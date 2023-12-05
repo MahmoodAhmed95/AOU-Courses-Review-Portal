@@ -5,10 +5,8 @@
 
 nav {
   height: 80px;
-  background-color: #ffa500;
+  background-color:#002d58;
   border-radius: 15px;
-  /* display: flex; */
-  /* align-items: center; */
 }
 
 .logo {
