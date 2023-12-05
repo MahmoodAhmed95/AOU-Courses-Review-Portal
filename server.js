@@ -21,7 +21,7 @@ require("./config/database");
 require("./config/passport");
 
 
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/indexes');
 var majorsRouter = require("./routes/majors");
 var coursesRouter = require("./routes/courses");
 var suggestionsRouter = require("./routes/suggestions");
