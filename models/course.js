@@ -42,14 +42,14 @@ const courseSchema = new Schema(
     contact: {
       type: String,
     },
-    categoryId: {
+    majorId: {
       type: Schema.Types.ObjectId,
-      ref: "category",
+      ref: "major",
       required: true,
     },
-    cityId: {
+    branchId: {
       type: Schema.Types.ObjectId,
-      ref: "city",
+      ref: "branch",
       required: true,
     },
     cost: {

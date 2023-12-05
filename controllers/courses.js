@@ -1,8 +1,8 @@
 const Course = require("../models/course");
 const Major = require("../models/major");
-const City = require("../models/city");
+const Branch = require("../models/branch");
 
-const cloudinary = require("../utils/cloudinary");
+// const cloudinary = require("../utils/cloudinary");
 module.exports = {
   index,
   courseForm,
@@ -16,7 +16,7 @@ module.exports = {
 async function index(req, res) {
   const courses = await Course.find({});
   const majors = await Major.find({});
-  const cities = await City.find({});
+  const cities = await Branch.find({});
   console.log(majors);
   res.render("courses/index", { title: "Courses", courses, cities, majors });
 }
@@ -24,7 +24,7 @@ async function index(req, res) {
 async function index(req, res) {
   try {
     const majors = await Major.find({});
-    const cities = await City.find({});
+    const cities = await Branch.find({});
     const courses = await Course.find({});
     res.render("courses/index", {
       title: "course",
@@ -40,7 +40,7 @@ async function index(req, res) {
 async function courseForm(req, res) {
   const course = new Course();
   const majors = await Major.find({});
-  const cities = await City.find({});
+  const cities = await Branch.find({});
   res.render("courses/new", { course, majors, cities });
 }
 

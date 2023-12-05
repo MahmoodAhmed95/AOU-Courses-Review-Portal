@@ -1,10 +1,10 @@
 var express = require("express");
 var router = express.Router();
-const upload = require("../utils/multer");
+// const upload = require("../utils/multer");
 
-const eventsCtrl = require("../controllers/courses");
+const coursesCtrl = require("../controllers/courses");
 const reviewsCtrl = require("../controllers/reviews");
-const categoriesCtrl = require("../controllers/majors");
+const majorsCtrl = require("../controllers/majors");
 
 /* GET home page. */
 router.get("/", coursesCtrl.index);
@@ -16,7 +16,7 @@ router.post("/:id/reviews", reviewsCtrl.create);
 router.delete("/:id/deletereview", reviewsCtrl.delete);
 
 //Creating course Route
-router.get("/:id", eventsCtrl.showOne);
+router.get("/:id", coursesCtrl.showOne);
 
 
 module.exports = router;

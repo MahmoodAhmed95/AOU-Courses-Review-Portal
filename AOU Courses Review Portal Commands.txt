@@ -174,3 +174,9 @@ npm install mongoose
 npm install passport-google-oauth
 
 ##
+npm install multer
+
+##
+npm install cloudinary
+
+##
