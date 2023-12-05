@@ -1,0 +1,103 @@
+<%- include('../partials/navbar.ejs') %>
+<!-- <% let total = 0,average = 0, courseLength =0 %> -->
+  
+    <div class="container">
+        <div class="categories">
+            <div class="title">
+                <h1 class="titleOne">Checkout all of the Courses in AOU!</h1>
+            <!-- </div>
+            <div class="classfications">
+                <ul>
+                    <li><button class="btn btn-secondary"><a href="/courses" class="selected">All</a></button></li>
+                    <% categories.forEach(function (category) { %>
+                        <li><button class="btn btn-secondary"><a href="/courses/<%= major._id %>">
+                                    <%= major.name %>
+                                </a></button>
+
+                        </li>
+                        <% }) %>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="courses">
+
+            <% courses.forEach(function(eve) { %>
+                <a href="/courses/<%= cour._id %>" style="background-image:url(<%=cour.profile_img%>);" class="courseTitle courseStyle">
+                    <div class="course">
+                        <div class="content">
+                            <span class="stars">
+                                <% cour.reviews.forEach(function(the) { %>
+                                    <% total+=the.rating %>
+                                  <% }); %>
+                                  <% courseLength = cour.reviews.length; %>
+                                <% average = approximateToNearest(total, courseLength); %>
+                                  <% if (average == 1) { %>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                  <% } else if (average == 2) { %>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                  <% } else if (average == 3) { %>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                  <% } else if (average == 4) { %>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                  <% } else if (average == 5) { %>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                  <% } else if (!average) { %>
+                                    <p style="color: white;background-color: rgba(0, 0, 0, 0.6); padding: 2px 5px;border-radius: 7px;">
+                                      Not Rated Yet &#128517;
+                                    </p>
+                                  <% } %>
+                            </span>
+
+                            <h2>
+                                <%= eve.name %>
+                            </h2>
+
+                        </div>
+                    </div>
+                </a>
+                <% }); %>
+
+        </div>
+
+    </div>
+    </div>
+
+
+    <% 
+    function approximateToNearest(number,course) {
+        if(course != 0){
+      if (number >= 0) {
+        number = (number / course).toFixed(1);
+        return Math.round(number);
+      } else {
+        number = (number / course).toFixed(1);
+        return Math.floor(number);
+      }
+    } else {
+        return NaN;
+    }
+    }
+    %>
+    <%- include('../partials/footer.ejs') %> -->
