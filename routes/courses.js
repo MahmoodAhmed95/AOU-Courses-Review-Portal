@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-// const upload = require("../utils/multer");
+const upload = require("../utils/multer");
 
 const coursesCtrl = require("../controllers/courses");
 const reviewsCtrl = require("../controllers/reviews");

@@ -2,7 +2,7 @@ const Course = require("../models/course");
 const Major = require("../models/major");
 const Branch = require("../models/branch");
 
-// const cloudinary = require("../utils/cloudinary");
+const cloudinary = require("../utils/cloudinary");
 module.exports = {
   index,
   courseForm,
