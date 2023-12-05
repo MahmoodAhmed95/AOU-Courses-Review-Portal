@@ -156,3 +156,21 @@ tags
 __pycache__/
 
 ##
+npm install method-override
+
+##
+npm install express-session
+
+##
+npm install express-flash
+
+##
+npm install passport
+
+##
+npm install mongoose
+
+##
+npm install passport-google-oauth
+
+##
