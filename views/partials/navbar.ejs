@@ -37,7 +37,17 @@
               <li><a href="/suggestions">Suggestions</a></li>
               <li><a href="/about">About</a></li>
 
-
+              <% if(typeof user !== 'undefined'){ %>
+                <% if(user.role === 2 || user.role === 1){ %>
+                <li ><a href="/admins">Admin</a></li>
+                <% } %>
+                <% } %>
+      
+                <% if (user) { %>
+                 <li  > <a href="/logout">LOG OUT</a></li>
+                  <% } else { %>
+                  <li class="onTheRight" > <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a></li> 
+                    <% } %>
 
 
             </ul>
