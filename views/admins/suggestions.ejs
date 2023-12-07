@@ -1,0 +1,69 @@
+<% if(user){ %>
+    <%- include('../partials/adminPartials/header.ejs') %>
+    <main>
+        <% if (successMessages && successMessages.length > 0) { %>
+            <div class="alert alert-success alert-dismissible fade show w-75 mx-5" role="alert">
+                <% for (let message of successMessages) { %>
+                    <p><%= message %></p>
+                <% } %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+        <% if (errorMessages && errorMessages.length > 0) { %>
+            <div class="alert alert-danger alert-dismissible fade show w-75 mx-5" role="alert" >
+                <% for (let message of errorMessages) { %>
+                    <p><%= message %></p>
+                <% } %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+        <div class="container">
+            <div class="display-2 text-center">
+                <h2>Users Suggestion Table</h2>
+            </div>
+            <div class="table-holder">
+                <table class="user-sgst-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Course Name</th>
+                            <th>Suggested By</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let counter = 0; %>
+                        <% suggestions.forEach((suggest) => { %>
+                            <% if(!suggest.status){ %>
+                                <% counter++; %>
+                                <tr>
+                                    <td data-label="Record"><%= counter %></td>
+                                    <td data-label="Course Name:"><%= suggest.name %></td>
+                                    <% users.forEach(user => { %>
+                                        <% if(user._id.toString() == suggest.user.toString()){ %>
+                                            <td data-label="Suggested By:"><%= user.name %></td>
+                                        <% } %>
+                                    <% }); %>
+                                    <td data-label="More Details:"><a href="/admins/suggestions/<%= suggest._id %>"><button class="btn btn-success">More Details</button></a></td>
+                                </tr>
+                            <% } %>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <%- include('../partials/adminPartials/footer.ejs') %>
+<% } else { %>
+
+    <div class="adminBasicContainer">
+
+        <h1 class="titleOne">Welcome Admin</h1>
+        
+        
+        <a href="/auth/google" class="login">
+            <button type="button" class="btn btn-primary">Login</button>
+          </a>
+        
+        </div>
+<% }  %>
