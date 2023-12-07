@@ -54,7 +54,7 @@
                     </div>
                 </form>
             </div>
-            <% if (major && major[0]) { %>
+            <% if (major) { %>
             <div class="tab-pane fade update-cate" id="update-cate-cont" role="tabpanel" aria-labelledby="update-cate-tab" tabindex="0">
                 <form class="step-form-holder" id="updateCateForm" action="/admins/majors/update/<%= major[0]._id %>?_method=PUT" method="POST">
                     <h1 class="step-form-header">Update Categroy</h1>

@@ -1,0 +1,119 @@
+<% if(user){ %>
+    <%- include('../partials/adminPartials/header.ejs') %>
+    <main>
+        <% if (successMessages && successMessages.length > 0) { %>
+            <div class="alert alert-success alert-dismissible fade show w-75 mx-5" role="alert">
+                <% for (let message of successMessages) { %>
+                    <p><%= message %></p>
+                <% } %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+        <% if (errorMessages && errorMessages.length > 0) { %>
+            <div class="alert alert-danger alert-dismissible fade show w-75 mx-5" role="alert" >
+                <% for (let message of errorMessages) { %>
+                    <p><%= message %></p>
+                <% } %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+        <% if(user.role == 2){ %>
+        <div class="container">
+            <div class="display-2 text-center">
+                <h2>Admins Table</h2>
+            </div>
+            <div class="table-holder">
+                <table class="user-sgst-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th></th>
+                            <th>Admin Name</th>
+                            <th>Email</th>
+                            <th>Promote</th>
+                            <th>Block</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let counterAdmins = 0; %>
+                        <% users.forEach(user => { %>
+                            <% if(user.role == 1){ %>
+                            <% counterAdmins++; %>
+                                <tr>
+                                    <td data-label="Admin No."><%= counterAdmins %></td>
+                                    <td data-label="Profile Image:">
+                                        <div>
+                                            <img src="<%= user.avatar %>" alt="User image" referrerpolicy="no-referrer" class="image">
+                                        </div>
+                                    </td>
+                                    <td data-label="Admin Name:"><%= user.name %></td>
+                                    <td data-label="User Role:">Admin</td>
+                                    <td data-label="Demote:"><a href="/admins/users/demote/<%= user._id %>"><button class="btn btn-outline-danger">Demote</button></a></td>
+                                    <td data-label="Block:"><a href="/admins/users/block/<%= user._id %>"><button class="btn btn-danger">Block</button></a></td>
+                                </tr>
+                            <% } %>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <% } %>
+        <div class="container">
+            <div class="display-2 text-center">
+                <h2>Users Table</h2>
+            </div>
+            <div class="table-holder">
+                <table class="user-sgst-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th></th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Promote</th>
+                            <th>Block</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let counterUsers = 0; %>
+                        <% users.forEach(user => { %>
+                            <% if(user.role == 0){ %>
+                                <% counterUsers++; %>
+                                <tr>
+                                    <td data-label="User No."><%= counterUsers %></td>
+                                    <td data-label="Profile Image:">
+                                        <div>
+                                            <img src="<%= user.avatar %>" alt="User image" referrerpolicy="no-referrer" class="image">
+                                        </div>
+                                    </td>
+                                    <td data-label="User Name:"><%= user.name %></td>
+                                    <td data-label="User Role:">User</td>
+                                    <td data-label="Promote:"><a href="/admins/users/promote/<%= user._id %>"><button class="btn btn-success">Promote</button></a></td>
+                                    <td data-label="Block:"><a href="/admins/users/block/<%= user._id %>"><button class="btn btn-danger">Block</button></a></td>
+                                </tr>
+                            <% } %>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <%- include('../partials/adminPartials/footer.ejs') %>
+<% } else { %>
+
+
+<h1 class="titleOne"> Welcome to the Admin Page</h1>
+
+
+
+<div class="adminBasicContainer">
+
+    <h1 class="titleOne">Welcome Admin</h1>
+    
+    
+    <a href="/auth/google" class="login">
+        <button type="button" class="btn btn-primary">Login</button>
+      </a>
+    
+    </div>
+<% }  %>
