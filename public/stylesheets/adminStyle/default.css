@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 :root {
-    --main-color: #002d58;
+    --main-color: #FFA500;
     --second-color: #FFF8EE;
     --third-color: #E69500;
 }
@@ -72,7 +72,7 @@ select {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background-color: #002d58;
+    background-color: #FFA500;
     /* background: radial-gradient(circle at center, rgb(255, 197, 61) 0%, rgb(255, 94, 7) 90%); */
 }
 .the-popup .us-image-holder .us-image {
@@ -126,7 +126,7 @@ select {
     -o-transition: 0.3s;
 }
 .the-popup .p-buttons button:not(.close) {
-    background-color: #002d58;
+    background-color: #FFA500;
     margin-bottom: 30px;
     padding: 10px;
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%), 0 2px 4px 0 rgb(0 0 0 / 12%);
@@ -207,7 +207,7 @@ select {
 }
 .custom-tabs .tabs-list-holder .tabs-list .tab-item button.active {
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%), 0 2px 4px 0 rgb(0 0 0 / 12%);
-    background-color: #002d58;
+    background-color: #FFA500;
     color: black;
 }
 /* tabs buttons */
@@ -275,7 +275,7 @@ select {
 .step-form-holder .step-form-three textarea, 
 .step-form-holder .step-form-showed textarea {
     background-color: #FFF8EE;
-    border-color: #002d58;
+    border-color: #FFA500;
     caret-color: #E69500;
 }
 .step-form-holder .step-form textarea + label,
@@ -383,7 +383,7 @@ select {
 }
 .the-choice .choice h4 {
     opacity: 0;
-    color: #002d58;
+    color: #FFA500;
     text-align: center;
     font-size: 18px;
     margin: 4px 0 3px;

@@ -5,7 +5,7 @@ header {
     align-items: center;
     padding: 10px 20px;
     position: relative;
-    background-color: #002d58;
+    background-color: #FFA500;
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%), 0 2px 4px 0 rgb(0 0 0 / 12%);
 }
 header .logo-text h2 {
@@ -22,7 +22,7 @@ header .nav-profile {
     align-items: center;
     justify-content: center;
     gap: 5px;
-    background-color: #002d58;
+    background-color: #E69500;
     color: #0A0A0A;
     padding: 10px;
     cursor: pointer;
@@ -38,7 +38,7 @@ header .nav-profile {
     -o-transition: background-color 0.3s;
 }
 header .nav-profile:hover {
-    background-color: white;
+    background-color: #cf8702;
 }
 header .nav-profile .pic {
     width: 30px;
@@ -78,7 +78,7 @@ main {
 /* End of main Styling */
 /* Start admin-nav Styling */
 .admin-nav {
-    background-color: #002d58;
+    background-color: #FFA500;
 }
 .admin-nav ul {
     display: flex;
