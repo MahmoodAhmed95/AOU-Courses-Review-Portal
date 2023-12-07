@@ -1,0 +1,161 @@
+<% if(user){ %>
+<%- include('../partials/adminPartials/header.ejs') %>
+
+<main>
+    <% if (successMessages && successMessages.length > 0) { %>
+        <div class="alert alert-success alert-dismissible fade show w-75 mx-5" role="alert">
+            <% for (let message of successMessages) { %>
+                <p><%= message %></p>
+            <% } %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+    <% if (errorMessages && errorMessages.length > 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show w-75 mx-5" role="alert" >
+            <% for (let message of errorMessages) { %>
+                <p><%= message %></p>
+            <% } %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+    <div class="tabs custom-tabs">
+        <h1 class="tabs-header">Majors</h1>
+        <div class="tabs-list-holder">
+            <ul class="tabs-list mb-2" id="categroies-tab" role="tablist">
+                <li class="tab-item" role="presentation">
+                    <button class="tab-btn active" id="add-new-cate-tab" data-bs-toggle="pill" data-bs-target="#add-new-cate-cont" type="button" role="tab" aria-controls="add-new-cate-tab" aria-selected="true">Add New Major</button>
+                </li>
+                <li class="tab-item" role="presentation">
+                    <button class="tab-btn" id="update-cate-tab" data-bs-toggle="pill" data-bs-target="#update-cate-cont" type="button" role="tab" aria-controls="update-cate-tab" aria-selected="false">Update Major</button>
+                </li>
+                <li class="tab-item" role="presentation">
+                    <button class="tab-btn" id="delete-cate-tab" data-bs-toggle="pill" data-bs-target="#delete-cate-cont" type="button" role="tab" aria-controls="delete-cate-tab" aria-selected="false">Delete Major</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container cate-container">
+        <div class="tab-content our-tab-content" id="categroies-tabContent">
+            <div class="tab-pane fade show active add-new-cate" id="add-new-cate-cont" role="tabpanel" aria-labelledby="add-new-cate-tab" tabindex="0">
+                <form class="step-form-holder" id="addNewCateForm" action="/admins/majors" method="POST">
+                    <h1 class="step-form-header">Add New Major</h1>
+                    <div class="step-form-showed">
+                        <div class="mb-3">
+                            <label for="newCateName" class="form-label">Major Name</label>
+                            <input type="text" name="name" class="form-control" id="newCateName" placeholder="e.g Education">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newCateIcon" class="form-label">Major Icon</label>
+                            <input type="text" name="icon" class="form-control" id="newCateIcon" placeholder="bi bi-surrender">
+                        </div>
+                    </div>
+                    <div class="step-buttons">
+                        <button type="submit">Add</button>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade update-cate" id="update-cate-cont" role="tabpanel" aria-labelledby="update-cate-tab" tabindex="0">
+                <form class="step-form-holder" id="updateCateForm" action="/admins/majors/update/<%= major[0]._id %>?_method=PUT" method="POST">
+                    <h1 class="step-form-header">Update Categroy</h1>
+                    <div class="step-dots-holder">
+                        <span class="step-dots">1</span>
+                        <span class="step-dots">2</span>
+                    </div>
+                    <div class="step-form">
+                        <label for="uptCateChoose" class="form-label">Choose Major</label>
+                        <select name="oldName" class="form-select" id="uptCateChoose">
+                            <% major.forEach(function(cate) { %>
+                                <option value="<%= cate._id %>"><%= cate.name %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="step-form">
+                        <div class="mb-3">
+                            <label for="uptCateName" class="form-label">Major Name</label>
+                            <input type="text" name="name" class="form-control" id="uptCateName" value="<%= major[0].name  %>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="uptCateIcon" class="form-label">Major Icon</label>
+                            <input type="text" name="icon" class="form-control" id="uptCateIcon" value="<%= major[0].icon  %>">
+                        </div>
+                    </div>
+                    <div class="step-buttons">
+                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade delete-cate" id="delete-cate-cont" role="tabpanel" aria-labelledby="delete-cate-tab" tabindex="0">
+                <form class="step-form-holder" id="deleteCateForm" action="/admins/majors/delete/<%=major[0]._id %>?_method=DELETE" method="POST">
+                    <h1 class="step-form-header">Delete Categroy</h1>
+                    <div class="step-form-showed">
+                        <label for="delCateChoose" class="form-label">Choose Major</label>
+                        <select name="name" class="form-select" id="delCateChoose">
+                            <% major.forEach(function(cate) { %>
+                                <option value="<%= cate._id %>"><%= cate.name %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="step-buttons">
+                        <button type="submit">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script>
+    let updateCateForm = document.getElementById("updateCateForm");
+    let deleteCateForm = document.getElementById("deleteCateForm");
+    let uptCateName = document.getElementById("uptCateName");
+    let uptCateIcon = document.getElementById("uptCateIcon");
+    let theForm = document.getElementsByTagName('form')[1];
+    $(document).ready(function() {
+        $('#uptCateChoose').change(function() {
+            $.ajax({
+                url: `/admins/majors/ajaxMajor/${$(this).val()}`,
+                dataType: 'json', // specify data type
+                type: 'GET',
+                success: function(data) {
+                    updateCateForm.setAttribute('action', `/admins/majors/update/${data._id}?_method=PUT`);
+                    updateCateForm.setAttribute('method', `POST`);
+                    uptCateName.setAttribute('value', `${data.name}`);
+                    uptCateIcon.setAttribute('value', `${data.icon}`);
+                },
+                error: function() {
+                    console.log('Error!');
+                }
+            });
+        });
+        $('#delCateChoose').change(function() {
+            $.ajax({
+                url: `/admins/majors/ajaxMajor/${$(this).val()}`,
+                dataType: 'json', // specify data type
+                type: 'GET',
+                success: function(data2) {
+                    // console.log(data2);
+                    deleteCateForm.setAttribute('action', `/admins/majors/delete/${data2._id}?_method=DELETE`);
+                    deleteCateForm.setAttribute('method', `POST`);
+                },
+                error: function() {
+                    console.log('Error!');
+                }
+            });
+        });
+    });
+</script>
+<%- include('../partials/adminPartials/footer.ejs') %>
+<% } else { %>
+   
+<div class="adminBasicContainer">
+
+    <h1 class="titleOne">Welcome Admin</h1>
+    
+    
+    <a href="/auth/google" class="login">
+        <button type="button" class="btn btn-primary">Login</button>
+      </a>
+    
+    </div>
+<% }  %>
