@@ -1,0 +1,14 @@
+.container.cate-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex: 1;
+}
+.form-label {
+    font-weight: bold;
+}
+.form-label span {
+    color: #E69500;
+    font-size: 11px;
+}
