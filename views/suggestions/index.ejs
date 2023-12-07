@@ -20,32 +20,32 @@
     <form action="/suggestions/create" id="suggestionForm" method="POST" enctype="multipart/form-data">
         <div class="step-form">
             <div class="mb-3">
-                <label for="newEveName" class="form-label">Course Name</label>
-                <input type="text" name="name" class="form-control" id="newEveName" placeholder="Enter Course Name">
+                <label for="newCorName" class="form-label">Course Name</label>
+                <input type="text" name="name" class="form-control" id="newCorName" placeholder="Enter Course Name">
             </div>
             <div class="form-floating mb-3">
 
-                <textarea name="description" class="form-control" id="newEveDesc"></textarea>
-                <label for="newEveDesc">Course Description</label>
+                <textarea name="description" class="form-control" id="newCorDesc"></textarea>
+                <label for="newCorDesc">Course Description</label>
 
             </div>
             <div class="mb-3">
-                <label for="addEveChooseCate" class="form-label">Choose Category</label>
-                <select name="categoryId" id="addEveChooseCate" class="form-control">
-                    <% categories.forEach(function (category) { %>
-                        <option value="<%= category._id %>"><%= category.name %></option>
+                <label for="addCorChooseMaj" class="form-label">Choose Major</label>
+                <select name="majorId" id="addCorChooseMaj" class="form-control">
+                    <% majors.forEach(function (major) { %>
+                        <option value="<%= major._id %>"><%= major.name %></option>
                     <% }); %>
                 </select>
             </div>
         </div>
         <div class="step-form">
             <div class="mb-3">
-                <label for="newEveLocation" class="form-label">Course Location</label>
-                <input type="text" name="location" class="form-control" id="newEveLocation" placeholder="Google Map Embed Link">
+                <label for="newCorLocation" class="form-label">Course Location</label>
+                <input type="text" name="location" class="form-control" id="newCorLocation" placeholder="Google Map Embed Link">
             </div>
             <div class="mb-3">
-                <label for="addEveChooseBranch" class="form-label">Choose Branch</label>
-                <select name="branchId" class="form-select" id="addEveChooseBranch">
+                <label for="addCorChooseBranch" class="form-label">Choose Branch</label>
+                <select name="branchId" class="form-select" id="addCorChooseBranch">
                     <% branchs.forEach(function (branch) { %>
                         <option value="<%= branch._id %>">
                             <%= branch.name %>
@@ -54,32 +54,32 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="newEvePic" class="form-label">Course Image</label>
-                <input type="file" name="image" class="form-control" id="newEvePic">
+                <label for="newCorPic" class="form-label">Course Image</label>
+                <input type="file" name="image" class="form-control" id="newCorPic">
             </div>
             <div class="mb-3">
-                <label for="newEveCost" class="form-label">Course Cost <span>(Optional)</span></label>
-                <input type="text" name="cost" class="form-control" id="newEveCost" placeholder="Enter How Much The course Will Cost">
+                <label for="newCorCost" class="form-label">Course Cost <span>(Optional)</span></label>
+                <input type="text" name="cost" class="form-control" id="newCorCost" placeholder="Enter How Much The course Will Cost">
             </div>
         </div>
         <div class="step-form">
             <div class="mb-3">
-                <label for="newEveStartDt" class="form-label">Course Start Date <span>(Optional)</span></label>
-                <input type="date" name="startDate" class="form-control" id="newEveStartDt">
+                <label for="newCorStartDt" class="form-label">Course Start Date <span>(Optional)</span></label>
+                <input type="date" name="startDate" class="form-control" id="newCorStartDt">
             </div>
             <div class="mb-3">
-                <label for="newEveEndDt" class="form-label">Course End Date <span>(Optional)</span></label>
-                <input type="date" name="endDate" class="form-control" id="newEveEndDt">
+                <label for="newCorEndDt" class="form-label">Course End Date <span>(Optional)</span></label>
+                <input type="date" name="endDate" class="form-control" id="newCorEndDt">
             </div>
             <div class="mb-3">
-                <label for="newEveTime" class="form-label">Course Time Duration <span>(Optional - Duration in hours)</span></label>
-                <input type="text" name="timeDuration" class="form-control" id="newEveTime" placeholder="Enter Duration of Course in hours">
+                <label for="newCorTime" class="form-label">Course Time Duration <span>(Optional - Duration in hours)</span></label>
+                <input type="text" name="timeDuration" class="form-control" id="newCorTime" placeholder="Enter Duration of Course in hours">
             </div>
         </div>
         <div class="step-form">
             <div class="form-floating mb-5">
-                <textarea type="text" name="contact" class="form-control" id="newEveContact"></textarea>
-                <label for="newEveContact">Course Contacts Information<span>(Optional)</span></label>
+                <textarea type="text" name="contact" class="form-control" id="newCorContact"></textarea>
+                <label for="newCorContact">Course Contacts Information<span>(Optional)</span></label>
             </div>
         </div>
     <div class="text-center mb-5">       

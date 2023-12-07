@@ -61,14 +61,14 @@
                         <span class="step-dots">1</span>
                         <span class="step-dots">2</span>
                     </div>
-                    <!-- <div class="step-form"> -->
+                    <div class="step-form">
                         <label for="uptCateChoose" class="form-label">Choose Major</label>
                                     <select name="oldName" class="form-select" id="uptCateChoose">
                         <% major.forEach(function(maj) { %>
                             <option value="<%= maj._id %>"><%= maj.name %></option> 
                             <% }); %>
                         </select>
-                    <!-- </div> -->
+                    </div>
                     <div class="step-form">
                         <div class="mb-3">
                             <label for="uptCateName" class="form-label">Major Name</label>

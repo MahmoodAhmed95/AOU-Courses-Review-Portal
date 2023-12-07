@@ -10,12 +10,12 @@ module.exports = {
 };
 
 async function index(req, res) {
-  const categories = await Major.find({});
-  const cities = await Branch.find({});
+  const majors = await Major.find({});
+  const branchs = await Branch.find({});
   res.render("suggestions/index", {
     title: "Suggest",
-    cities,
-    categories,
+    branchs,
+    majors,
     errorMessages: req.flash("Error"),
     successMessages: req.flash("success"),
   });
