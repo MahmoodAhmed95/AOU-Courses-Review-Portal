@@ -1,8 +1,26 @@
 <%- include('../partials/navbar.ejs') %>
-  
-    <div class="container">
-        <div class="categories">
-            <div class="title">
-                <h1 class="titleOne">Checkout all of the Majors in AOU!</h1>
-<%- include('../partials/footer.ejs') %>
-            
+    <h1 class="titleOne">Choose a Major of choice!</h1>
+
+    <main>
+        <!-- Start majors -->
+        <div class="categories" id="categories">
+
+            <div class="container">
+                <% majors.forEach(function (major) { %>
+
+                    <div>
+                        <a href="/majors/<%= major._id %>">
+                            <div class="box">
+                                <i class="bi bi-mortarboard-fill"></i>
+                                <h3 class="categoryA">
+                                    <%= major.name %>
+                                </h3>
+                            </div>
+                        </a>
+                    </div>
+                    <% }) %>
+            </div>
+            <!-- End majors -->
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
