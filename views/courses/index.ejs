@@ -1,8 +1,109 @@
 <%- include('../partials/navbar.ejs') %>
+<% let total = 0,average = 0, courseLength =0 %>
   
     <div class="container">
-        <div class="categories">
+        <div class="majors">
             <div class="title">
                 <h1 class="titleOne">Checkout all of the Courses in AOU!</h1>
-<%- include('../partials/footer.ejs') %>
-            
+            </div>
+            <div class="classfications">
+                <ul>
+                    <li><button class="btn btn-secondary"><a href="/courses" class="selected">All</a></button></li>
+                    <% majors.forEach(function (major) { %>
+                        <li><button class="btn btn-secondary"><a href="/majors/<%= major._id %>">
+                                    <%= major.name %>
+                                </a></button>
+
+                        </li>
+                        <% }) %>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="courses">
+
+            <% courses.forEach(function(cor) { %>
+                <a href="/courses/<%= cor._id %>" style="background-image:url(<%=cor.profile_img%>);" class="courseTitle courseStyle">
+                    <div class="course">
+                        <div class="content">
+                            <span class="stars">
+                                <% cor.reviews.forEach(function(the) { %>
+                                    <% total+=the.rating %>
+                                  <% }); %>
+                                  <% courseLength = cor.reviews.length; %>
+                                <% average = approximateToNearest(total, courseLength); %>
+                                  <% if (average == 1) { %>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                  <% } else if (average == 2) { %>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                  <% } else if (average == 3) { %>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                  <% } else if (average == 4) { %>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                  <% } else if (average == 5) { %>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                  <% } else if (!average) { %>
+                                    <p style="color: white;background-color: rgba(0, 0, 0, 0.6); padding: 2px 5px;border-radius: 7px;">
+                                      Not Rated Yet &#128517;
+                                    </p>
+                                  <% } %>
+                            </span>
+
+                            <h2>
+                                <%= cor.name %>
+                            </h2>
+
+                        </div>
+                    </div>
+                </a>
+                <!-- <a href="/courses/edit/<%= cor._id %>">Edit</a>
+                            <form action="/courses/delete/<%=cor._id %>?_method=DELETE"  method="POST">
+                                <button type="submit">Delete</button>
+                        </form>    THIS SHOULD BE IN THE ADMIN CONTROLLER     -->
+                <% }); %>
+
+        </div>
+
+    </div>
+    </div>
+
+
+    <% 
+    function approximateToNearest(number,course) {
+        if(course != 0){
+      if (number >= 0) {
+        number = (number / course).toFixed(1);
+        return Math.round(number);
+      } else {
+        number = (number / course).toFixed(1);
+        return Math.floor(number);
+      }
+    } else {
+        return NaN;
+    }
+    }
+    %>
+    <!-- <a href="/courses/new">Add new Event</a> THIS SHOULD BE IN THE ADMIN CONTROLLER link to add new course then change it -->
+
+    <%- include('../partials/footer.ejs') %>

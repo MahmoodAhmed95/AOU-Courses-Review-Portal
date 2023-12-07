@@ -347,11 +347,11 @@ async function suggestionsDetails(req, res) {
 
 async function suggestionAccept(req, res) {
   try {
-      const suggest = await Suggestion.findById(req.params.id);
-      suggest.status = true;
-      await suggest.save();
-      req.flash("success", `Suggest Accept successfully!`);
-      res.redirect("/admins/suggestions");
+    const suggest = await Suggestion.findById(req.params.id);
+    suggest.status = true;
+    await suggest.save();
+    req.flash("success", `Suggest Accept successfully!`);
+    res.redirect("/admins/suggestions");
   } catch (error) {
     res.render("error");
   }
@@ -360,8 +360,8 @@ async function suggestionAccept(req, res) {
 async function suggestionReject(req, res) {
   try {
     await Suggestion.deleteOne({ _id: req.params.id });
-      req.flash("success", `Suggestion Rejected successfully!`);
-      res.redirect("/admins/suggestions");
+    req.flash("success", `Suggestion Rejected successfully!`);
+    res.redirect("/admins/suggestions");
   } catch (error) {
     res.render("error");
   }

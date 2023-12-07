@@ -1,7 +1,111 @@
+<% if(user){ %>
 <%- include('../partials/navbar.ejs') %>
-  
-    <div class="container">
-        <div class="categories">
-            <div class="title">
-                <h1 class="titleOne">Suggest your Course to add it in AOU!</h1>
-                <%- include('../partials/footer.ejs') %>
+    <h1 class="titleOne">Wanna Suggest a Course?</h1>
+    <% if (successMessages && successMessages.length > 0) { %>
+        <div class="alert alert-success alert-dismissible fade show w-75 my-3 m-auto" role="alert">
+            <% for (let message of successMessages) { %>
+                <p><%= message %></p>
+            <% } %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+    <% if (errorMessages && errorMessages.length > 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show w-75 my-3 m-auto" role="alert" >
+            <% for (let message of errorMessages) { %>
+                <p><%= message %></p>
+            <% } %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+    <form action="/suggestions/create" id="suggestionForm" method="POST" enctype="multipart/form-data">
+        <div class="step-form">
+            <div class="mb-3">
+                <label for="newEveName" class="form-label">Course Name</label>
+                <input type="text" name="name" class="form-control" id="newEveName" placeholder="Enter Course Name">
+            </div>
+            <div class="form-floating mb-3">
+
+                <textarea name="description" class="form-control" id="newEveDesc"></textarea>
+                <label for="newEveDesc">Course Description</label>
+
+            </div>
+            <div class="mb-3">
+                <label for="addEveChooseCate" class="form-label">Choose Category</label>
+                <select name="categoryId" id="addEveChooseCate" class="form-control">
+                    <% categories.forEach(function (category) { %>
+                        <option value="<%= category._id %>"><%= category.name %></option>
+                    <% }); %>
+                </select>
+            </div>
+        </div>
+        <div class="step-form">
+            <div class="mb-3">
+                <label for="newEveLocation" class="form-label">Course Location</label>
+                <input type="text" name="location" class="form-control" id="newEveLocation" placeholder="Google Map Embed Link">
+            </div>
+            <div class="mb-3">
+                <label for="addEveChooseBranch" class="form-label">Choose Branch</label>
+                <select name="branchId" class="form-select" id="addEveChooseBranch">
+                    <% branchs.forEach(function (branch) { %>
+                        <option value="<%= branch._id %>">
+                            <%= branch.name %>
+                        </option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="newEvePic" class="form-label">Course Image</label>
+                <input type="file" name="image" class="form-control" id="newEvePic">
+            </div>
+            <div class="mb-3">
+                <label for="newEveCost" class="form-label">Course Cost <span>(Optional)</span></label>
+                <input type="text" name="cost" class="form-control" id="newEveCost" placeholder="Enter How Much The course Will Cost">
+            </div>
+        </div>
+        <div class="step-form">
+            <div class="mb-3">
+                <label for="newEveStartDt" class="form-label">Course Start Date <span>(Optional)</span></label>
+                <input type="date" name="startDate" class="form-control" id="newEveStartDt">
+            </div>
+            <div class="mb-3">
+                <label for="newEveEndDt" class="form-label">Course End Date <span>(Optional)</span></label>
+                <input type="date" name="endDate" class="form-control" id="newEveEndDt">
+            </div>
+            <div class="mb-3">
+                <label for="newEveTime" class="form-label">Course Time Duration <span>(Optional - Duration in hours)</span></label>
+                <input type="text" name="timeDuration" class="form-control" id="newEveTime" placeholder="Enter Duration of Course in hours">
+            </div>
+        </div>
+        <div class="step-form">
+            <div class="form-floating mb-5">
+                <textarea type="text" name="contact" class="form-control" id="newEveContact"></textarea>
+                <label for="newEveContact">Course Contacts Information<span>(Optional)</span></label>
+            </div>
+        </div>
+    <div class="text-center mb-5">       
+        <button type="submit" class="btn btn-dark">Suggest</button>
+    </div>
+</form>
+<%- include('../partials/footer.ejs') %>
+<% } else { %>
+
+
+    <%- include('../partials/navbar.ejs') %>
+
+
+
+
+<h1 class="titleOne">Please Login in Order to Suggest a Course</h1>
+
+<div class="signInHolder">
+    <a href="/auth/google">
+      <button type="button" id="signIntoReview" class="btn btn-primary courseAdd">Login to Add Course!</button>
+
+    </a>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+
+
+
+<% }  %>

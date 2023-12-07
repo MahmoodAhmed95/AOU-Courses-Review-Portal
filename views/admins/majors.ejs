@@ -54,22 +54,21 @@
                     </div>
                 </form>
             </div>
-            <% if (major) { %>
             <div class="tab-pane fade update-cate" id="update-cate-cont" role="tabpanel" aria-labelledby="update-cate-tab" tabindex="0">
                 <form class="step-form-holder" id="updateCateForm" action="/admins/majors/update/<%= major[0]._id %>?_method=PUT" method="POST">
-                    <h1 class="step-form-header">Update Categroy</h1>
+                    <h1 class="step-form-header">Update Major</h1>
                     <div class="step-dots-holder">
                         <span class="step-dots">1</span>
                         <span class="step-dots">2</span>
                     </div>
-                    <div class="step-form">
+                    <!-- <div class="step-form"> -->
                         <label for="uptCateChoose" class="form-label">Choose Major</label>
-                        <select name="oldName" class="form-select" id="uptCateChoose">
-                            <% major.forEach(function(cate) { %>
-                                <option value="<%= cate._id %>"><%= cate.name %></option>
+                                    <select name="oldName" class="form-select" id="uptCateChoose">
+                        <% major.forEach(function(maj) { %>
+                            <option value="<%= maj._id %>"><%= maj.name %></option> 
                             <% }); %>
                         </select>
-                    </div>
+                    <!-- </div> -->
                     <div class="step-form">
                         <div class="mb-3">
                             <label for="uptCateName" class="form-label">Major Name</label>
@@ -88,12 +87,12 @@
             </div>
             <div class="tab-pane fade delete-cate" id="delete-cate-cont" role="tabpanel" aria-labelledby="delete-cate-tab" tabindex="0">
                 <form class="step-form-holder" id="deleteCateForm" action="/admins/majors/delete/<%=major[0]._id %>?_method=DELETE" method="POST">
-                    <h1 class="step-form-header">Delete Categroy</h1>
+                    <h1 class="step-form-header">Delete Major</h1>
                     <div class="step-form-showed">
                         <label for="delCateChoose" class="form-label">Choose Major</label>
                         <select name="name" class="form-select" id="delCateChoose">
-                            <% major.forEach(function(cate) { %>
-                                <option value="<%= cate._id %>"><%= cate.name %></option>
+                            <% major.forEach(function(maj) { %>
+                                <option value="<%= maj._id %>"><%= maj.name %></option>
                             <% }); %>
                         </select>
                     </div>
@@ -102,9 +101,6 @@
                     </div>
                 </form>
             </div>
-            <% } else { %>
-  <!-- Handle the case where major is undefined or empty -->
-<% } %>
         </div>
     </div>
 </main>

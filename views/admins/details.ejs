@@ -1,0 +1,308 @@
+<% if(user){ %>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | <%= title %></title>
+    <!-- logo icon -->
+    <link rel="icon" type="image/x-icon" href="../../images/felha_head.png">
+    <!-- Bootstrap Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- our styles -->
+    <link rel="stylesheet" href="../../stylesheets/adminStyle/default.css">
+    <link rel="stylesheet" href="../../stylesheets/adminStyle/structure.css">
+    <link rel="stylesheet" href="../../stylesheets/adminStyle/dashboard.css">
+    <link rel="stylesheet" href="../../stylesheets/adminStyle/majors.css">
+    <link rel="stylesheet" href="../../stylesheets/adminStyle/table.css">
+    <link rel="stylesheet" href="../../stylesheets/style.css">
+</head>
+<body>
+    <header class="fixed-top">
+        <div class="logo-text">
+            <h2>Felha</h2>
+        </div>
+        <div class="nav-profile" onclick="openPopUp()">
+            <div class="pic">
+                <img src="<%= user.avatar  %>" alt="Profile Picture">
+            </div>
+            <div class="name">
+                <h4><%= user.name  %></h4>
+            </div>
+        </div>
+    </header>
+    <div class="the-popup" id="userPopUp">
+        <div class="us-image-holder">
+            <div class="us-image">
+                <img src="<%= user.avatar  %>" alt="User Image">
+            </div>
+        </div>
+        <div class="us-name">
+            <h3><%= user.name  %></h3>
+            <span><%= user.email  %></span>
+        </div>
+        <div class="p-buttons">
+            <a href="/logout">
+                <button type="button">Logout</button>
+            </a>
+            <button type="button" class="close" onclick="closePopUp()">Close <span>✘</span></button>
+        </div>
+    </div>
+    <main>
+        <div class="details">
+            <div class="container">
+                <div class="head-info">
+                    <div class="image">
+                        <img src="<%= suggest.profile_img %>" alt="">
+                    </div>
+                    <div class="informations">
+                        <div class="name">
+                            <h3><%=`${suggest.name}`%></h3>
+                        </div>
+                        <div class="description">
+                            <p> <%=`${suggest.description}`%></p>
+                        </div>
+                        <div class="contact-cost">
+                            <span>
+                                <i class="bi bi-telephone"></i>
+                                <b>Contact:</b>
+                                <span>
+                                    <%=`${suggest.contact}`%>
+                                </span>
+                            </span>
+                            <span>
+                                <i class="bi bi-cash-stack"></i>
+                                Cost: 
+                                <span>
+                                    <%=`${suggest.cost}`%>
+                                </span> 
+                                BD
+                            </span>
+                        </div>
+                        <div class="dates">
+                            <span>
+                                <i class="bi bi-calendar4-week"></i>
+                                Start Date: 
+                                <span>
+                                    <%=`${suggest.startDate}`%>
+                                </span>
+                            </span>
+                            <span class="mid">
+                                <i class="bi bi-calendar4-week"></i>
+                                End Date: 
+                                <span>
+                                    <%=`${suggest.endDate}`%>
+                                </span>
+                            </span>
+                            <span>
+                                <i class="bi bi-hourglass-split"></i>
+                                Time Duration: 
+                                <span>
+                                    <%=`${suggest.timeDuration}`%>
+                                </span>
+                                Hours
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="location-info">
+                    <div class="location">
+                        <%-`${suggest.location}`%>
+                    </div>
+                </div>  
+                <div class="buttons-Accept-reject">
+                    <a href="/admins/suggestions/accept/<%= suggest._id %>"><button class="btn btn-success">Accept</button></a>
+                    <a href="/admins/suggestions/reject/<%= suggest._id %>"><button class="btn btn-danger">Reject</button></a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="admin-nav fixed-bottom">
+        <ul>
+            <li class="hidden-small">
+                <a href="/admins/majors">
+                    <% if(title == "Majors"){ %>
+                        <div class="nav-btn clicked">
+                    <% } else { %>
+                        <div class="nav-btn">
+                    <% } %>
+                        <i class="bi bi-diagram-3"></i>
+                        <span>Majors Control</span>
+                    </div>
+                </a>
+            </li>
+            <li class="hidden-small">
+                <a href="/admins/courses">
+                    <% if(title == "Courses"){ %>
+                        <div class="nav-btn clicked">
+                    <% } else { %>
+                        <div class="nav-btn">
+                    <% } %>
+                        <i class="bi bi-calendar2-date"></i>
+                        <span>Courses Control</span>
+                    </div>
+                </a>
+            </li>
+            <li class="hidden-sp-small">
+                <a href="/admins/">
+                    <% if(title == "Dashboard"){ %>
+                        <div class="nav-btn clicked">
+                    <% } else { %>
+                        <div class="nav-btn">
+                    <% } %>
+                        <i class="bi bi-pc-display-horizontal"></i>
+                        <span>Dashboard</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <div class="nav-btn">
+                        <i class="bi bi-house"></i>
+                        <span>Home Page</span>
+                    </div>
+                </a>
+            </li>
+            <li class="hidden-sp-small">
+                <a href="/logout">
+                    <div class="nav-btn">
+                        <i class="bi bi-door-open"></i>
+                        <span>Logout</span>
+                    </div>
+                </a>
+            </li>
+            <li class="hidden-small">
+                <a href="/admins/suggestions">
+                    <% if(title == "Suggestions"){ %>
+                        <div class="nav-btn clicked">
+                    <% } else { %>
+                        <div class="nav-btn">
+                    <% } %>
+                        <i class="bi bi-binoculars"></i>
+                        <span>Suggestions Control</span>
+                    </div>
+                </a>
+            </li>
+            <li class="hidden-small">
+                <a href="/admins/users">
+                    <% if(title == "Users"){ %>
+                        <div class="nav-btn clicked">
+                    <% } else { %>
+                        <div class="nav-btn">
+                    <% } %>
+                        <i class="bi bi-people"></i>
+                        <span>Users Control</span>
+                    </div>
+                </a>
+            </li>
+            <li class="hidden-large">
+                <div class="nav-btn" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-grid"></i>
+                    <span>More</span>
+                </div>
+            </li>
+        </ul>
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="p-4 extra-nav">
+                <ul class="inside-more">
+                    <li class="hidden-sp-h-small">
+                        <a href="/admins/">
+                            <% if(title == "Dashboard"){ %>
+                                <div class="nav-btn clicked">
+                            <% } else { %>
+                                <div class="nav-btn">
+                            <% } %>
+                                <i class="bi bi-pc-display-horizontal"></i>
+                                <span>Dashboard</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="hidden-sp-h-small">
+                        <a href="/logout">
+                            <div class="nav-btn">
+                                <i class="bi bi-door-open"></i>
+                                <span>Logout</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admins/majors">
+                            <% if(title == "Majors"){ %>
+                                <div class="nav-btn clicked">
+                            <% } else { %>
+                                <div class="nav-btn">
+                            <% } %>
+                                <i class="bi bi-diagram-3"></i>
+                                <span>Majors Control</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admins/courses">
+                            <% if(title == "Courses"){ %>
+                                <div class="nav-btn clicked">
+                            <% } else { %>
+                                <div class="nav-btn">
+                            <% } %>
+                                <i class="bi bi-calendar2-date"></i>
+                                <span>Courses Control</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admins/suggestions">
+                            <% if(title == "Suggestions"){ %>
+                                <div class="nav-btn clicked">
+                            <% } else { %>
+                                <div class="nav-btn">
+                            <% } %>
+                                <i class="bi bi-binoculars"></i>
+                                <span>Suggestions Control</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admins/users">
+                            <% if(title == "Users"){ %>
+                                <div class="nav-btn clicked">
+                            <% } else { %>
+                                <div class="nav-btn">
+                            <% } %>
+                                <i class="bi bi-people"></i>
+                                <span>Users Control</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <!-- our scripts -->
+    <% if(title == "Courses"){ %>
+        <script src="../js/stepForm.js"></script>
+        <script src="../js/stepFormTwo.js"></script>
+        <script src="../js/stepFormThree.js"></script>
+    <% } else if(title == "Majors") { %>
+        <script src="../js/stepForm.js"></script>
+    <% } else { %>
+        <script src="../../js/popup.js"></script>
+    <% } %>
+</body>
+</html>
+<% } else { %>
+
+    <div class="adminBasicContainer">
+
+        <h1 class="titleOne">Welcome Admin</h1>
+        
+        
+        <a href="/auth/google" class="login">
+            <button type="button" class="btn btn-primary">Login</button>
+          </a>
+        
+        </div>
+<% }  %>
