@@ -1,0 +1,105 @@
+.container h2 {
+    font-family: 'Signika', sans-serif;
+    font-size: 28px;
+    color: #0A0A0A;
+    letter-spacing: 0.3px;
+    font-weight: 900;
+    margin: 0;
+}
+.table-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-sgst-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 20px;
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    -webkit-border-radius: 15px 15px 0 0;
+    -moz-border-radius: 15px 15px 0 0;
+    -ms-border-radius: 15px 15px 0 0;
+    -o-border-radius: 15px 15px 0 0;
+    overflow: hidden;
+    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%), 0 2px 4px 0 rgb(0 0 0 / 12%);
+}
+.user-sgst-table thead tr {
+    background-color: #FFA500;
+    color: #0a0a0a;
+    text-align: center;
+}
+.user-sgst-table tbody tr {
+    text-align: center;
+}
+.user-sgst-table thead tr th:last-of-type,
+.user-sgst-table tbody tr td:last-of-type {
+    text-align: center;
+}
+.user-sgst-table th,
+.user-sgst-table td {
+    padding: 12px 15px;
+}
+.user-sgst-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.user-sgst-table td .image{
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%), 0 2px 4px 0 rgb(0 0 0 / 12%);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+.user-sgst-table td .image img{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    object-fit: cover;
+}
+.user-sgst-table tbody tr:nth-of-type(even) {
+    background-color: rgba(255, 166, 0, 0.2);
+}
+
+.user-sgst-table tbody tr:last-of-type {
+    border-bottom: 2px solid #E69500;
+}
+@media screen and (max-width: 600px) {
+    .user-sgst-table {
+        border: 0;
+    }
+    .user-sgst-table thead {
+        border: none;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    .user-sgst-table tr {
+        display: block;
+    }
+    .user-sgst-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+    }
+    tbody, td, tfoot, th, thead, tr {
+        border: none;
+    }
+    .user-sgst-table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .user-sgst-table td:last-child {
+        border-bottom: 0;
+    }
+}
