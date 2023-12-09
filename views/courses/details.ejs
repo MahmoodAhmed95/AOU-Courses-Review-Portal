@@ -1,6 +1,6 @@
 <%- include('../partials/navbar.ejs') %>
 <% let total = 0,average = 0 %>
-<% event.reviews.forEach(function(the) { %>
+<% course.reviews.forEach(function(the) { %>
   <% total+=the.rating %>
 <% }); %>
   <body>
@@ -21,41 +21,41 @@
       </div>
   <% } %>
     <h1 class="titleOne" id="eventTitleDetail">
-      <%=`${event.name}`%> Details
+      <%=`${course.name}`%> Details
     </h1>
     <div class="details">
       <div class="container">
         <div class="head-info">
           <div class="image">
-            <img src="<%= event.profile_img %>" alt="Event Image">
+            <img src="<%= course.profile_img %>" alt="Course Image">
           </div>
           <div class="informations">
             <div class="name">
               <h3>
-                <%=`${event.name}`%>
+                <%=`${course.name}`%>
               </h3>
             </div>
             <div class="description">
               <p>
-                <%=`${event.description}`%>
+                <%=`${course.description}`%>
               </p>
             </div>
             <div class="contact-cost">
               <span><i class="bi bi-telephone"></i><b>Contact:</b> <span>
-                  <%=`${event.contact}`%>
+                  <%=`${course.contact}`%>
                 </span></span>
               <span><i class="bi bi-cash-stack"></i>Cost: <span>
-                  <%=`${event.cost}`%>
+                  <%=`${course.cost}`%>
                 </span> BD</span>
             </div>
             <div class="dates">
               <span><i class="bi bi-calendar4-week"></i>Start Date: <span>
-                  <%=`${event.startDate}`%>
+                  <%=`${course.startDate}`%>
                 </span></span>
               <span class="mid"><i class="bi bi-calendar4-week"></i>End Date: <span>
-                  <%=`${event.endDate}`%>
+                  <%=`${course.endDate}`%>
               </span></span>
-              <span class="mid"><i class="bi bi-car"></i>Event Rating: <span>
+              <span class="mid"><i class="bi bi-car"></i>Course Rating: <span>
                 <% average = approximateToNearest(total); %>
                 <div class="starsRatingAverage">
                   <% if (average == 1) { %>
@@ -96,20 +96,20 @@
                 </div>
               </span></span>
               <span><i class="bi bi-hourglass-split"></i>Time Duration: <span>
-                  <%=`${event.timeDuration}`%>
+                  <%=`${course.timeDuration}`%>
               </span> Hours</span>
             </div>
           </div>
         </div>
         <div class="location-info">
           <div class="location">
-            <%-`${event.location}`%>
+            <%-`${course.location}`%>
           </div>
         </div>
         <div class="add-review">
           <h2>Add a Review</h2>
           <% if (user) { %>
-            <form action="/events/<%= event._id %>/reviews" method="POST">
+            <form action="/courses/<%= course._id %>/reviews" method="POST">
               <div class="rating-starz mb-3">
                 <span>Rating:</span>
                 <div class="stars">
@@ -140,7 +140,7 @@
             <% } %>
         </div>
         <div class="reviews">
-          <% event.reviews.forEach(function(r) { %>
+          <% course.reviews.forEach(function(r) { %>
 
             <div class="review">
 
@@ -201,7 +201,7 @@
               </div>
               <div class="rating"></div>
               <div class="control">
-                <form action="/events/<%= r._id %>/deletereview?_method=DELETE" method="POST">
+                <form action="/courses/<%= r._id %>/deletereview?_method=DELETE" method="POST">
                   <input type="hidden" value="<%=r.user%>" name="reviewUser">
               <% if(user){ %>
                 <% if(user._id.toString() == r.user.toString() || user.role == 1 || user.role == 2){ %>
@@ -226,7 +226,7 @@
       const stars = document.querySelectorAll(".stars i");
       // Loop through the "stars"
       stars.forEach((star, index1) => {
-          // Add an event listener that runs a function when the "click" event is triggered
+          // Add an course listener that runs a function when the "click" course is triggered
           star.addEventListener("click", () => {
               // Loop through the "stars" NodeList Again
               stars.forEach((star, index2) => {
@@ -265,7 +265,7 @@
 
 
                   <% //let total=0 %> 
-                    <% //event.reviews.forEach(function(r) { %>
+                    <% //course.reviews.forEach(function(r) { %>
                       <%// total +=r.rating %> 
 
                         <tr>
@@ -289,7 +289,7 @@
 
 
                          <td><strong>
-                                <%= //(total / event.reviews.length).toFixed(1)=="NaN" ? "" :(total /event.reviews.length).toFixed(1) %>
+                                <%= //(total / course.reviews.length).toFixed(1)=="NaN" ? "" :(total /course.reviews.length).toFixed(1) %>
                               </strong></td> 
                           </tr>
                 </tbody> -->
@@ -300,10 +300,10 @@
 <% 
 function approximateToNearest(number) {
   if (number >= 0) {
-    number = (number / event.reviews.length).toFixed(1);
+    number = (number / course.reviews.length).toFixed(1);
     return Math.round(number);
   } else {
-    number = (number / event.reviews.length).toFixed(1);
+    number = (number / course.reviews.length).toFixed(1);
     return Math.floor(number);
   }
 }
