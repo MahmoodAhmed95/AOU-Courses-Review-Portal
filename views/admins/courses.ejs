@@ -22,23 +22,23 @@
         <div class="tabs-list-holder">
             <ul class="tabs-list mb-2" id="majors-tab" role="tablist">
                 <li class="tab-item" role="presentation">
-                    <button class="tab-btn active" id="add-new-eve-tab" data-bs-toggle="pill" data-bs-target="#add-new-eve-cont" type="button" role="tab" aria-controls="add-new-eve-tab" aria-selected="true">Add New Course</button>
+                    <button class="tab-btn active" id="add-new-cor-tab" data-bs-toggle="pill" data-bs-target="#add-new-cor-cont" type="button" role="tab" aria-controls="add-new-cor-tab" aria-selected="true">Add New Course</button>
                 </li>
                 <li class="tab-item" role="presentation">
-                    <button class="tab-btn" id="add-eve-sgst-tab" data-bs-toggle="pill" data-bs-target="#add-eve-sgst-cont" type="button" role="tab" aria-controls="add-eve-sgst-tab" aria-selected="false">Add New Course from Susgestion</button>
+                    <button class="tab-btn" id="add-cor-sgst-tab" data-bs-toggle="pill" data-bs-target="#add-cor-sgst-cont" type="button" role="tab" aria-controls="add-cor-sgst-tab" aria-selected="false">Add New Course from Susgestion</button>
                 </li>
                 <li class="tab-item" role="presentation">
-                    <button class="tab-btn" id="update-eve-tab" data-bs-toggle="pill" data-bs-target="#update-eve-cont" type="button" role="tab" aria-controls="update-eve-tab" aria-selected="false">Update Course</button>
+                    <button class="tab-btn" id="update-cor-tab" data-bs-toggle="pill" data-bs-target="#update-cor-cont" type="button" role="tab" aria-controls="update-cor-tab" aria-selected="false">Update Course</button>
                 </li>
                 <li class="tab-item" role="presentation">
-                    <button class="tab-btn" id="delete-eve-tab" data-bs-toggle="pill" data-bs-target="#delete-eve-cont" type="button" role="tab" aria-controls="delete-eve-tab" aria-selected="false">Delete Course</button>
+                    <button class="tab-btn" id="delete-cor-tab" data-bs-toggle="pill" data-bs-target="#delete-cor-cont" type="button" role="tab" aria-controls="delete-cor-tab" aria-selected="false">Delete Course</button>
                 </li> 
             </ul>
         </div>
     </div>
     <div class="container cate-container">
         <div class="tab-content our-tab-content" id="majors-tabContent">
-            <div class="tab-pane fade show active add-new-cate" id="add-new-eve-cont" role="tabpanel" aria-labelledby="add-new-cate-tab" tabindex="0">
+            <div class="tab-pane fade show active add-new-cate" id="add-new-cor-cont" role="tabpanel" aria-labelledby="add-new-cate-tab" tabindex="0">
                 <form class="step-form-holder" id="addNewCorForm" action="/admins/courses" method="POST" enctype="multipart/form-data">
                     <h1 class="step-form-header">Add New Course</h1>
                     <div class="step-dots-holder">
@@ -123,7 +123,7 @@
                     </div>
                 </form>
             </div>
-            <div class="tab-pane fade update-cate" id="add-eve-sgst-cont" role="tabpanel" aria-labelledby="add-eve-sgst-tab" tabindex="0">
+            <div class="tab-pane fade update-cate" id="add-cor-sgst-cont" role="tabpanel" aria-labelledby="add-cor-sgst-tab" tabindex="0">
                 <form class="step-form-holder" id="addNewCorSgstForm" action="/admins/courses" method="POST" enctype="multipart/form-data">
                     <h1 class="step-form-header">Add New Course from Suggestions</h1>
                     <div class="step-dots-holder">
@@ -267,7 +267,7 @@
                     </div>
                 </form>
             </div>
-            <div class="tab-pane fade delete-cate" id="update-eve-cont" role="tabpanel" aria-labelledby="update-eve-tab" tabindex="0">
+            <div class="tab-pane fade delete-cate" id="update-cor-cont" role="tabpanel" aria-labelledby="update-cor-tab" tabindex="0">
                 <form class="step-form-holder" id="updateCorForm" action="/admins/courses/update/<%= courses[0]._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                     <h1 class="step-form-header">Update Course</h1>
                     <div class="step-dots-holder">
@@ -398,7 +398,7 @@
                     </div>
                 </form>
             </div>
-            <div class="tab-pane fade delete-cate" id="delete-eve-cont" role="tabpanel" aria-labelledby="delete-eve-tab" tabindex="0">
+            <div class="tab-pane fade delete-cate" id="delete-cor-cont" role="tabpanel" aria-labelledby="delete-cor-tab" tabindex="0">
                 <form class="step-form-holder" id="delCorForm" action="/admins/courses/delete/<%=courses[0]._id %>?_method=DELETE" method="POST">
                     <h1 class="step-form-header">Delete Course</h1>
                     <div class="step-form-showed">
