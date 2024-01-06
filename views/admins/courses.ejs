@@ -46,14 +46,15 @@
                         <span class="step-dots">2</span>
                         <span class="step-dots">3</span>
                         <span class="step-dots">4</span>
-                        <span class="step-dots">5</span>
-                        <span class="step-dots">6</span>
+                        <!-- <span class="step-dots">5</span> -->
+                        <!-- <span class="step-dots">6</span> -->
                     </div>
                     <div class="step-form">
                         <div class="mb-3">
                             <label for="newCorName" class="form-label">Course Name</label>
                             <input type="text" name="name" class="form-control" id="newCorName" placeholder="Enter Course Name">
                         </div>
+                        <label for="newCorDesc" class="form-label">Course Description</label>
                         <div class="form-floating mb-3">
                             <textarea name="description" class="form-control" id="newCorDesc"></textarea>
                             <label for="newCorDesc">Course Description</label>
@@ -71,17 +72,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="newCorPic" class="form-label">Course Image</label>
-                            <input type="file" name="image" class="form-control" id="newCorPic">
-                        </div>
-                    </div>
-                    <div class="step-form">
-                        <div class="mb-3">
-                            <label for="newCorLocation" class="form-label">Course Location</label>
-                            <input type="text" name="location" class="form-control" id="newCorLocation" placeholder="Google Map Embed Link">
-                        </div>
-                        <div class="mb-3">
-                            <label for="addCorChooseCity" class="form-label">Choose City</label>
+                            <label for="addCorChooseCity" class="form-label">Choose Branch</label>
                             <select name="branchId" class="form-select" id="addCorChooseCity">
                                 <% branchs.forEach(function (branch) { %>
                                     <option value="<%= branch._id %>">
@@ -93,12 +84,12 @@
                     </div>
                     <div class="step-form">
                         <div class="mb-3">
-                            <label for="newCorStartDt" class="form-label">Course Start Date <span>(Optional)</span></label>
-                            <input type="date" name="startDate" class="form-control" id="newCorStartDt">
+                            <label for="newCorPic" class="form-label">Course Image</label>
+                            <input type="file" name="image" class="form-control" id="newCorPic">
                         </div>
                         <div class="mb-3">
-                            <label for="newCorEndDt" class="form-label">Course End Date <span>(Optional)</span></label>
-                            <input type="date" name="endDate" class="form-control" id="newCorEndDt">
+                            <label for="newCorMat" class="form-label">Course Material</label>
+                            <input type="file" name="document" class="form-control" id="newCorMat">
                         </div>
                     </div>
                     <div class="step-form">
@@ -107,14 +98,12 @@
                             <input type="text" name="cost" class="form-control" id="newCorCost" placeholder="Enter How Much The course Will Cost">
                         </div>
                         <div class="mb-3">
-                            <label for="newCorTime" class="form-label">Course Time Duration <span>(Optional - Duration in hours)</span></label>
+                            <label for="newCorTime" class="form-label">Course Credit Hour <span>(Optional - Duration in hours)</span></label>
                             <input type="text" name="timeDuration" class="form-control" id="newCorTime" placeholder="Enter Duration of Course in hours">
                         </div>
-                    </div>
-                    <div class="step-form">
-                        <div class="form-floating mb-3">
-                            <textarea type="text" name="contact" class="form-control" id="newCorContact"></textarea>
-                            <label for="newCorContact">Course Contacts Information<span>(Optional)</span></label>
+                        <div class="mb-3">
+                            <label for="newCorPre" class="form-label">Course Prerequisite</label>
+                            <input type="text" name="coursePrerequisite" class="form-control" id="newCorPre" placeholder="Enter The Prerequisite Courses Names">
                         </div>
                     </div>
                     <div class="step-buttons">
@@ -276,9 +265,9 @@
                         <span class="step-dots-three">3</span>
                         <span class="step-dots-three">4</span>
                         <span class="step-dots-three">5</span>
-                        <span class="step-dots-three">6</span>
-                        <span class="step-dots-three">7</span>
-                        <span class="step-dots-three">8</span>
+                        <!-- <span class="step-dots-three">6</span> -->
+                        <!-- <span class="step-dots-three">7</span> -->
+                        <!-- <span class="step-dots-three">8</span> -->
                     </div>
                     <div class="step-form-three">
                         <div class="mb-3">
@@ -297,33 +286,10 @@
                             <label for="uptCorName" class="form-label">Course Name</label>
                             <input type="text" name="name" class="form-control" id="uptCorName" placeholder="Enter Course Name" value="<%= courses[0].name %>">
                         </div>
+                        <label for="uptCorDesc" class="form-label">Course Description</label>
                         <div class="form-floating mb-3">
                             <textarea name="description" class="form-control" id="uptCorDesc"><%= courses[0].description %></textarea>
                             <label for="uptCorDesc">Course Description</label>
-                        </div>
-                    </div>
-                    <div class="step-form-three">
-                        <div class="the-choice">
-                            <div class="choice">
-                                <input type="radio" name="imageChangeControl" id="eveImageChangeControl1" class="radioHidden" value="old" checked>
-                                <label for="eveImageChangeControl1" class="img-choice-select">
-                                    <div class="img-holder">
-                                        <img src="<%= courses[0].profile_img %>" alt="Course Image" id="eveOldImageToUpt" <%= courses[0]._id %>>
-                                        <input type="hidden" id="eveOldCorPicCdId" name="eveOldImage" value="<%= courses[0].cloudinary_id %>">
-                                        <input type="hidden" id="eveOldImageToUptInp" name="eveOldImageProfile" value="<%= courses[0].profile_img %>">
-                                    </div>
-                                </label>
-                                <h4>Keep The Suggested Image</h4>
-                            </div>
-                            <div class="choice">
-                                <input type="radio" name="imageChangeControl" id="eveImageChangeControl2" class="radioHidden" value="new">
-                                <label for="eveImageChangeControl2" class="img-choice-select">
-                                    <div>
-                                        <input type="file" name="image" class="form-control" id="uptCorPic">
-                                    </div>
-                                </label>
-                                <h4>Add New Image</h4>
-                            </div>
                         </div>
                     </div>
                     <div class="step-form-three">
@@ -343,12 +309,6 @@
                                 <% }); %>
                             </select>
                         </div>
-                    </div>
-                    <div class="step-form-three">
-                        <div class="mb-3">
-                            <label for="uptCorLocation" class="form-label">Course Location</label>
-                            <input type="text" name="location" class="form-control" id="uptCorLocation" placeholder="Google Map Embed Link" value="<%= courses[0].location %>">
-                        </div>
                         <div class="mb-3">
                             <label for="uptCorChooseCity" class="form-label">Choose City</label>
                             <select name="branchId" class="form-select" id="uptCorChooseCity">
@@ -367,13 +327,27 @@
                         </div>
                     </div>
                     <div class="step-form-three">
-                        <div class="mb-3">
-                            <label for="uptCorStartDt" class="form-label">Course Start Date <span>(Optional)</span></label>
-                            <input type="date" name="startDate" class="form-control" id="uptCorStartDt">
-                        </div>
-                        <div class="mb-3">
-                            <label for="uptCorEndDt" class="form-label">Course End Date <span>(Optional)</span></label>
-                            <input type="date" name="endDate" class="form-control" id="uptCorEndDt">
+                        <div class="the-choice">
+                            <div class="choice">
+                                <input type="radio" name="imageChangeControl" id="eveImageChangeControl1" class="radioHidden" value="old" checked>
+                                <label for="eveImageChangeControl1" class="img-choice-select">
+                                    <div class="img-holder">
+                                        <img src="<%= courses[0].profile_img %>" alt="Course Image" id="corOldImageToUpt" <%= courses[0]._id %>>
+                                        <input type="hidden" id="corOldCorPicCdId" name="corOldImage" value="<%= courses[0].cloudinary_id %>">
+                                        <input type="hidden" id="corOldImageToUptInp" name="corOldImageProfile" value="<%= courses[0].profile_img %>">
+                                    </div>
+                                </label>
+                                <h4>Keep The Suggested Image</h4>
+                            </div>
+                            <div class="choice">
+                                <input type="radio" name="imageChangeControl" id="corImageChangeControl2" class="radioHidden" value="new">
+                                <label for="corImageChangeControl2" class="img-choice-select">
+                                    <div>
+                                        <input type="file" name="image" class="form-control" id="uptCorPic">
+                                    </div>
+                                </label>
+                                <h4>Add New Image</h4>
+                            </div>
                         </div>
                     </div>
                     <div class="step-form-three">
@@ -382,14 +356,12 @@
                             <input type="text" name="cost" class="form-control" id="uptCorCost" value="<%= courses[0].cost %>">
                         </div>
                         <div class="mb-3">
-                            <label for="uptCorTime" class="form-label">Course Time Duration <span>(Optional - Duration in hours)</span></label>
+                            <label for="uptCorTime" class="form-label">Course Credit Hour <span>(Optional - Duration in hours)</span></label>
                             <input type="text" name="timeDuration" class="form-control" id="uptCorTime" placeholder="Enter Duration of Course in hours" value="<%= courses[0].timeDuration %>">
                         </div>
-                    </div>
-                    <div class="step-form-three">
-                        <div class="form-floating mb-3">
-                            <textarea type="text" name="contact" class="form-control" id="uptCorContact"><%= courses[0].contact %></textarea>
-                            <label for="uptCorContact">Course Contacts Information<span>(Optional)</span></label>
+                        <div class="mb-3">
+                            <label for="upCorPre" class="form-label">Course Prerequisite <span>(Optional - Duration in hours)</span></label>
+                            <input type="text" name="timeDuration" class="form-control" id="upCorPre" placeholder="Enter The Prerequisite Courses Names" value="<%= courses[0].coursePrerequisite %>">
                         </div>
                     </div>
                     <div class="step-buttons">
@@ -481,7 +453,7 @@
                     uptCorChooseCateIndex = Array.from(uptCorChooseCate.options).findIndex(option => option.value.toString() == data.majorId.toString());
                     // Set the selected index to the index of the matching option
                     uptCorChooseCate.selectedIndex = uptCorChooseCateIndex;
-                    document.getElementById('eveOldCorPicCdId').setAttribute('value', `${data.cloudinary_id}`);
+                    document.getElementById('corOldCorPicCdId').setAttribute('value', `${data.cloudinary_id}`);
                     document.getElementById('uptCorLocation').setAttribute('value', `${data.location}`);
                     // Find the index of the option with branch Id
                     uptCorChooseCityIndex = Array.from(uptCorChooseCity.options).findIndex(option => option.value.toString() == data.branchId.toString());
@@ -490,8 +462,8 @@
                     document.getElementById('uptCorCost').setAttribute('value', `${data.cost}`);
                     document.getElementById('uptCorTime').setAttribute('value', `${data.timeDuration}`);
                     document.getElementById('uptCorContact').innerHTML = `${data.contact}`;
-                    document.getElementById('eveOldImageToUpt').setAttribute('src', `${data.profile_img}`);
-                    document.getElementById('eveOldImageToUptInp').setAttribute('value', `${data.profile_img}`);
+                    document.getElementById('corOldImageToUpt').setAttribute('src', `${data.profile_img}`);
+                    document.getElementById('corOldImageToUptInp').setAttribute('value', `${data.profile_img}`);
                 },
                 error: function() {
                     console.log('Error!');

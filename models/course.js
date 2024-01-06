@@ -35,13 +35,19 @@ const courseSchema = new Schema(
       type: String,
       required: true,
     },
-    location: {
+    // ,
+    // location: {
+    //   type: String,
+    //   required: true,
+    // }
+    coursePrerequisite: {
+      // new
       type: String,
-      required: true,
     },
-    contact: {
-      type: String,
-    },
+    // ,
+    // contact: {
+    //   type: String,
+    // }
     majorId: {
       type: Schema.Types.ObjectId,
       ref: "major",
@@ -56,20 +62,23 @@ const courseSchema = new Schema(
       type: String,
       default: "Not specified",
     },
-    startDate: {
-      type: Date,
-      default: Date,
-    },
-    endDate: {
-      type: Date,
-      default: Date,
-    },
+    // ,
+    // startDate: {
+    //   type: Date,
+    //   default: Date,
+    // },
+    // endDate: {
+    //   type: Date,
+    //   default: Date,
+    // }
     timeDuration: {
       type: String,
       default: "Not specified",
     },
     profile_img: String,
     cloudinary_id: String,
+    material_doc: String, // new
+    cloudinary_id: String, // new
     reviews: [reviewSchema],
   },
   {

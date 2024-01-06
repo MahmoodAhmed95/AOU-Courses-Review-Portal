@@ -146,13 +146,14 @@ async function courseForm(req, res) {
 async function createCourse(req, res) {
   console.log(req.body);
   try {
-    const contactRegex = /^(3)\d{7}$|(17|80|66|69)\d{6}$/;
-    const contact = req.body.contact;
+    // const contactRegex = /^(3)\d{7}$|(17|80|66|69)\d{6}$/;
+    // const contact = req.body.contact;
+    const coursePrerequisite = req.body.coursePrerequisite;
 
     //Validate Google Embeded link
-    const googleMapRegex =
-      /<iframe\s*src="https:\/\/www\.google\.com\/maps\/embed\?[^"]+"*\s*[^>]+>*<\/iframe>/;
-    const googleMap = req.body.location;
+    // const googleMapRegex =
+    //   /<iframe\s*src="https:\/\/www\.google\.com\/maps\/embed\?[^"]+"*\s*[^>]+>*<\/iframe>/;
+    // const googleMap = req.body.location;
 
     //Validate Course name
     const courseNameRegex = /^(?=(.*[a-zA-Z]){3})[a-zA-Z0-9\s]+$/;
@@ -162,15 +163,16 @@ async function createCourse(req, res) {
     const courseCostRegex = /^\d{1,7}(\.\d{1,2})?$/;
     const courseCost = req.body.cost;
 
-    if (!contactRegex.test(contact) && contact == !null) {
-      console.log("Invalid number");
-      req.flash("Error", `Invalid Contact Number!`);
-      res.redirect("/admins/courses");
-    } else if (!googleMapRegex.test(googleMap)) {
-      console.log("Invalid Google Maps link");
-      req.flash("Error", `Invalid Google Maps Link`);
-      res.redirect("/admins/courses");
-    } else if (!courseNameRegex.test(courseName)) {
+    // if (!contactRegex.test(contact) && contact == !null) {
+    //   console.log("Invalid number");
+    //   req.flash("Error", `Invalid Contact Number!`);
+    //   res.redirect("/admins/courses");
+    // } else if (!googleMapRegex.test(googleMap)) {
+    //   console.log("Invalid Google Maps link");
+    //   req.flash("Error", `Invalid Google Maps Link`);
+    //   res.redirect("/admins/courses");
+    // } else
+    if (!courseNameRegex.test(courseName)) {
       console.log("Invalid Course Name");
       req.flash("Error", `Invalid Course Name`);
       res.redirect("/admins/courses");
@@ -188,14 +190,30 @@ async function createCourse(req, res) {
         req.body.profile_img = result.secure_url;
         req.body.cloudinary_id = result.public_id;
       }
+      if (req.body.docChangeControl == "old") {
+        req.body.material_doc = req.body.oldCourseDoc;
+        req.body.cloudinary_id = req.body.oldDoc;
+      } else {
+        // Upload Doc to cloudinary
+        const resultD = await cloudinary.uploader.upload(req.file.path);
+        req.body.course_doc = resultD.secure_url;
+        req.body.cloudinary_id = resultD.public_id;
+      }
       delete req.body.suggestName;
       delete req.body.imageChangeControl;
+      delete req.body.docChangeControl;
       delete req.body.oldImage;
+      delete req.body.oldDoc;
       delete req.body.oldImageProfile;
+      delete req.body.oldCourseDoc;
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
       req.body.profile_img = result.secure_url;
       req.body.cloudinary_id = result.public_id;
+      // Upload Doc to cloudinary
+      const resultD = await cloudinary.uploader.upload(req.file.path);
+      req.body.material_doc = resultD.secure_url;
+      req.body.cloudinary_id = resultD.public_id;
 
       await Course.create(req.body);
       req.flash("success", `Courses Created Successfully!`);
@@ -226,13 +244,14 @@ async function editCourseForm(req, res) {
 
 async function updateCourseForm(req, res) {
   try {
-    const contactRegex = /^(3)\d{7}$|(17|80|66|69)\d{6}$/;
-    const contact = req.body.contact;
+    // const contactRegex = /^(3)\d{7}$|(17|80|66|69)\d{6}$/;
+    // const contact = req.body.contact;
 
     //Validate Google Embeded link
-    const googleMapRegex =
-      /<iframe\s*src="https:\/\/www\.google\.com\/maps\/embed\?[^"]+"*\s*[^>]+>*<\/iframe>/;
-    const googleMap = req.body.location;
+    // const googleMapRegex =
+    // /<iframe\s*src="https:\/\/www\.google\.com\/maps\/embed\?[^"]+"*\s*[^>]+>*<\/iframe>/;
+    // const googleMap = req.body.location;
+    const coursePrerequisite = req.body.coursePrerequisite;
 
     //Validate Course name
     const courseNameRegex = /^(?=(.*[a-zA-Z]){3})[a-zA-Z0-9\s]+$/;
@@ -242,15 +261,16 @@ async function updateCourseForm(req, res) {
     const courseCostRegex = /^\d{1,7}(\.\d{1,2})?$/;
     const courseCost = req.body.cost;
 
-    if (!contactRegex.test(contact) && contact == !null) {
-      console.log("Invalid number");
-      req.flash("Error", `Invalid Contact Number!`);
-      res.redirect("/admins/courses");
-    } else if (!googleMapRegex.test(googleMap)) {
-      console.log("Invalid Google Maps link");
-      req.flash("Error", `Invalid Google Maps Link`);
-      res.redirect("/admins/courses");
-    } else if (!courseNameRegex.test(courseName)) {
+    // if (!contactRegex.test(contact) && contact == !null) {
+    //   console.log("Invalid number");
+    //   req.flash("Error", `Invalid Contact Number!`);
+    //   res.redirect("/admins/courses");
+    // } else if (!googleMapRegex.test(googleMap)) {
+    //   console.log("Invalid Google Maps link");
+    //   req.flash("Error", `Invalid Google Maps Link`);
+    //   res.redirect("/admins/courses");
+    // } else
+    if (!courseNameRegex.test(courseName)) {
       console.log("Invalid Course Name");
       req.flash("Error", `Invalid Course Name`);
       res.redirect("/admins/courses");
@@ -269,17 +289,27 @@ async function updateCourseForm(req, res) {
         req.body.profile_img = result.secure_url;
         req.body.cloudinary_id = result.public_id;
       }
+      if (req.body.docChangeControl == "old") {
+        req.body.material_doc = req.body.oldCourseDoc;
+        req.body.cloudinary_id = req.body.oldDoc;
+      } else {
+        // Upload image to cloudinary
+        const resultD = await cloudinary.uploader.upload(req.file.path);
+        req.body.material_doc = resultD.secure_url;
+        req.body.cloudinary_id = resultD.public_id;
+      }
       console.log(req.body);
       course.name = req.body.name;
       (course.description = req.body.description),
-        (course.location = req.body.location),
+        (course.coursePrerequisite = req.body.coursePrerequisite),
         (course.picture = req.body.picture),
-        (course.contact = req.body.contact),
+        (course.document = req.body.document),
+        // (course.contact = req.body.contact),
         (course.cost = req.body.cost),
         (course.majorId = req.body.majorId),
         (course.branchId = req.body.branchId),
-        (course.startDate = req.body.startDate),
-        (course.endDate = req.body.endDate),
+        // (course.startDate = req.body.startDate),
+        // (course.endDate = req.body.endDate),
         (course.timeDuration = req.body.timeDuration);
       await course.save();
       req.flash("success", `Courses Updated Successfully!`);

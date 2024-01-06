@@ -65,9 +65,11 @@ async function create(req, res) {
 }
 async function showOne(req, res) {
   const course = await Course.findById(req.params.id);
+  const majors = await Major.find({});
   res.render("courses/details", {
     title: "course",
     course,
+    majors,
     errorMessages: req.flash("Error"),
     successMessages: req.flash("success"),
   });

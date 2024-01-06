@@ -31,31 +31,35 @@
           </div>
           <div class="informations">
             <div class="name">
-              <h3>
-                <%=`${course.name}`%>
-              </h3>
+              <span><i class="bi bi-book"></i><b> Course Name: </b></span><span><%=`${course.name}`%></span>
             </div>
             <div class="description">
+              <h6> <span><i class="bi bi-book"></i><b> Course Description:</b> <span>
+                </span></span>
+              </h6>
               <p>
-                <%=`${course.description}`%>
+                      <%=`${course.description}`%>
               </p>
             </div>
             <div class="contact-cost">
-              <span><i class="bi bi-telephone"></i><b>Contact:</b> <span>
-                  <%=`${course.contact}`%>
+              <span><i class="bi bi-telephone"></i><b>Course Major:</b> <span>
+                  <span>
+                    <% for (const major of majors) { %>
+                      <% if (major._id.toString() === course.majorId.toString()) { %>
+                        <%= major.name %>
+                      <% } %>
+                    <% } %>
+              </span>
+                </span></span>
+              <span><i class="bi bi-telephone"></i><b>Course Prerequisite:</b> <span>
+                  <%=`${course.coursePrerequisite}`%>
                 </span></span>
               <span><i class="bi bi-cash-stack"></i>Cost: <span>
                   <%=`${course.cost}`%>
                 </span> BD</span>
             </div>
             <div class="dates">
-              <span><i class="bi bi-calendar4-week"></i>Start Date: <span>
-                  <%=`${course.startDate}`%>
-                </span></span>
-              <span class="mid"><i class="bi bi-calendar4-week"></i>End Date: <span>
-                  <%=`${course.endDate}`%>
-              </span></span>
-              <span class="mid"><i class="bi bi-car"></i>Course Rating: <span>
+              <span class="mid"><i class="bi bi-telephone"></i>Course Rating: <span>
                 <% average = approximateToNearest(total); %>
                 <div class="starsRatingAverage">
                   <% if (average == 1) { %>
@@ -95,7 +99,7 @@
                   <% } %>
                 </div>
               </span></span>
-              <span><i class="bi bi-hourglass-split"></i>Time Duration: <span>
+              <span><i class="bi bi-hourglass-split"></i>Credit Hours: <span>
                   <%=`${course.timeDuration}`%>
               </span> Hours</span>
             </div>
@@ -103,6 +107,7 @@
         </div>
         <div class="location-info">
           <div class="location">
+            <h3><b>Course Material :</b></h3>
             <%-`${course.location}`%>
           </div>
         </div>
