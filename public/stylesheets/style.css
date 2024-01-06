@@ -567,9 +567,8 @@ main .container .majors .classfications ul li:not(:first-of-type) {
 }
 
 #instaTitle {
-  margin-bottom: 6%;
+  margin-bottom: 2%;
 }
-
 /* course DETAILS PAGE DESIGN */
 
 .details {
