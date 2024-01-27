@@ -30,6 +30,10 @@
 
             </div>
             <div class="mb-3">
+                <label for="newcoursePrerequisite" class="form-label">Course Prerequisite</label>
+                <input type="text" name="coursePrerequisite" class="form-control" id="newcoursePrerequisite" placeholder="Prerequisite">
+            </div>
+            <div class="mb-3">
                 <label for="addCorChooseMaj" class="form-label">Choose Major</label>
                 <select name="majorId" id="addCorChooseMaj" class="form-control">
                     <% majors.forEach(function (major) { %>
@@ -39,10 +43,6 @@
             </div>
         </div>
         <div class="step-form">
-            <div class="mb-3">
-                <label for="newCorLocation" class="form-label">Course Location</label>
-                <input type="text" name="location" class="form-control" id="newCorLocation" placeholder="Google Map Embed Link">
-            </div>
             <div class="mb-3">
                 <label for="addCorChooseBranch" class="form-label">Choose Branch</label>
                 <select name="branchId" class="form-select" id="addCorChooseBranch">
@@ -54,32 +54,23 @@
                 </select>
             </div>
             <div class="mb-3">
+                <label for="newCorCost" class="form-label">Course Cost</label>
+                <input type="text" name="cost" class="form-control" id="newCorCost" placeholder="Enter How Much The course Will Cost">
+            </div>
+            <div class="mb-3">
+                <label for="newCorTime" class="form-label">Course Credit Hour </label>
+                <input type="text" name="timeDuration" class="form-control" id="newCorTime" placeholder="Enter Duration of Course in hours">
+            </div>
+            <div class="mb-3">
                 <label for="newCorPic" class="form-label">Course Image</label>
                 <input type="file" name="image" class="form-control" id="newCorPic">
             </div>
-            <div class="mb-3">
-                <label for="newCorCost" class="form-label">Course Cost <span>(Optional)</span></label>
-                <input type="text" name="cost" class="form-control" id="newCorCost" placeholder="Enter How Much The course Will Cost">
-            </div>
+            
         </div>
         <div class="step-form">
             <div class="mb-3">
-                <label for="newCorStartDt" class="form-label">Course Start Date <span>(Optional)</span></label>
-                <input type="date" name="startDate" class="form-control" id="newCorStartDt">
-            </div>
-            <div class="mb-3">
-                <label for="newCorEndDt" class="form-label">Course End Date <span>(Optional)</span></label>
-                <input type="date" name="endDate" class="form-control" id="newCorEndDt">
-            </div>
-            <div class="mb-3">
-                <label for="newCorTime" class="form-label">Course Time Duration <span>(Optional - Duration in hours)</span></label>
-                <input type="text" name="timeDuration" class="form-control" id="newCorTime" placeholder="Enter Duration of Course in hours">
-            </div>
-        </div>
-        <div class="step-form">
-            <div class="form-floating mb-5">
-                <textarea type="text" name="contact" class="form-control" id="newCorContact"></textarea>
-                <label for="newCorContact">Course Contacts Information<span>(Optional)</span></label>
+                <label for="newMaterial_doc" class="form-label">Course Material</label>
+                <input type="file" name="doc" class="form-control" id="newMaterial_doc">
             </div>
         </div>
     <div class="text-center mb-5">       

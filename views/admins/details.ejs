@@ -22,7 +22,7 @@
 <body>
     <header class="fixed-top">
         <div class="logo-text">
-            <h2>Felha</h2>
+            <h2>AOU</h2>
         </div>
         <div class="nav-profile" onclick="openPopUp()">
             <div class="pic">
@@ -59,17 +59,17 @@
                     </div>
                     <div class="informations">
                         <div class="name">
-                            <h3><%=`${suggest.name}`%></h3>
+                            <h3><b>Course Name: </b><%=`${suggest.name}`%></h3>
                         </div>
-                        <div class="description">
-                            <p> <%=`${suggest.description}`%></p>
+                        <div class="description"> 
+                            <p><b>Course Description: </b><%=`${suggest.description}`%></p>
                         </div>
                         <div class="contact-cost">
                             <span>
                                 <i class="bi bi-telephone"></i>
-                                <b>Contact:</b>
+                                <b>Prerequisite:</b>
                                 <span>
-                                    <%=`${suggest.contact}`%>
+                                    <%=`${suggest.coursePrerequisite}`%>
                                 </span>
                             </span>
                             <span>
@@ -83,22 +83,8 @@
                         </div>
                         <div class="dates">
                             <span>
-                                <i class="bi bi-calendar4-week"></i>
-                                Start Date: 
-                                <span>
-                                    <%=`${suggest.startDate}`%>
-                                </span>
-                            </span>
-                            <span class="mid">
-                                <i class="bi bi-calendar4-week"></i>
-                                End Date: 
-                                <span>
-                                    <%=`${suggest.endDate}`%>
-                                </span>
-                            </span>
-                            <span>
                                 <i class="bi bi-hourglass-split"></i>
-                                Time Duration: 
+                                Credit Hour: 
                                 <span>
                                     <%=`${suggest.timeDuration}`%>
                                 </span>
@@ -107,11 +93,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="location-info">
+                <!-- <div class="location-info">
                     <div class="location">
                         <%-`${suggest.location}`%>
                     </div>
-                </div>  
+                </div>   -->
                 <div class="buttons-Accept-reject">
                     <a href="/admins/suggestions/accept/<%= suggest._id %>"><button class="btn btn-success">Accept</button></a>
                     <a href="/admins/suggestions/reject/<%= suggest._id %>"><button class="btn btn-danger">Reject</button></a>

@@ -46,8 +46,6 @@
                         <span class="step-dots">2</span>
                         <span class="step-dots">3</span>
                         <span class="step-dots">4</span>
-                        <!-- <span class="step-dots">5</span> -->
-                        <!-- <span class="step-dots">6</span> -->
                     </div>
                     <div class="step-form">
                         <div class="mb-3">
@@ -122,8 +120,6 @@
                         <span class="step-dots-two">4</span>
                         <span class="step-dots-two">5</span>
                         <span class="step-dots-two">6</span>
-                        <span class="step-dots-two">7</span>
-                        <span class="step-dots-two">8</span>
                     </div>
                     <div class="step-form-two">
                         <div class="mb-3">
@@ -155,6 +151,40 @@
                         </div>
                     </div>
                     <div class="step-form-two">
+                        <div class="mb-3">
+                            <label for="addCorSgstChooseCate" class="form-label">Choose Major</label>
+                            <select name="majorId" class="form-select" id="addCorSgstChooseCate">
+                                <% majors.forEach(function (major) { %>
+                                    <% if(major._id.toString() ==  suggestions[0].majorId.toString()) { %>
+                                        <option value="<%= major._id %>" selected>
+                                            <%= major.name %>
+                                        </option>
+                                    <% } else { %>
+                                        <option value="<%= major._id %>">
+                                            <%= major.name %>
+                                        </option>
+                                    <% } %>
+                                <% }); %>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="addCorSgstChooseCity" class="form-label">Choose Branch</label>
+                            <select name="branchId" class="form-select" id="addCorSgstChooseCity">
+                                <% branchs.forEach(function (branch) { %>
+                                    <% if(branch._id.toString() ==  suggestions[0].branchId.toString()) { %>
+                                        <option value="<%= branch._id %>" selected>
+                                            <%= branch.name %>
+                                        </option>
+                                    <% } else { %>
+                                        <option value="<%= branch._id %>">
+                                            <%= branch.name %>
+                                        </option>
+                                    <% } %>
+                                <% }); %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="step-form-two">
                         <div class="the-choice">
                             <div class="choice">
                                 <input type="radio" name="imageChangeControl" id="imageChangeControl1" class="radioHidden" value="old" checked>
@@ -179,53 +209,27 @@
                         </div>
                     </div>
                     <div class="step-form-two">
-                        <div class="mb-3">
-                            <label for="addCorSgstChooseCate" class="form-label">Choose Major</label>
-                            <select name="majorId" class="form-select" id="addCorSgstChooseCate">
-                                <% majors.forEach(function (major) { %>
-                                    <% if(major._id.toString() ==  suggestions[0].majorId.toString()) { %>
-                                        <option value="<%= major._id %>" selected>
-                                            <%= major.name %>
-                                        </option>
-                                    <% } else { %>
-                                        <option value="<%= major._id %>">
-                                            <%= major.name %>
-                                        </option>
-                                    <% } %>
-                                <% }); %>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="step-form-two">
-                        <div class="mb-3">
-                            <label for="newCorLocationSgst" class="form-label">Course Location</label>
-                            <input type="text" name="location" class="form-control" id="newCorLocationSgst" placeholder="Google Map Embed Link" value="<%= suggestions[0].location %>">
-                        </div>
-                        <div class="mb-3">
-                            <label for="addCorSgstChooseCity" class="form-label">Choose City</label>
-                            <select name="branchId" class="form-select" id="addCorSgstChooseCity">
-                                <% branchs.forEach(function (branch) { %>
-                                    <% if(branch._id.toString() ==  suggestions[0].branchId.toString()) { %>
-                                        <option value="<%= branch._id %>" selected>
-                                            <%= branch.name %>
-                                        </option>
-                                    <% } else { %>
-                                        <option value="<%= branch._id %>">
-                                            <%= branch.name %>
-                                        </option>
-                                    <% } %>
-                                <% }); %>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="step-form-two">
-                        <div class="mb-3">
-                            <label for="newCorStartDtSgst" class="form-label">Course Start Date <span>(Optional)</span></label>
-                            <input type="date" name="startDate" class="form-control" id="newCorStartDtSgst">
-                        </div>
-                        <div class="mb-3">
-                            <label for="newCorEndDtSgst" class="form-label">Course End Date <span>(Optional)</span></label>
-                            <input type="date" name="endDate" class="form-control" id="newCorEndDtSgst">
+                        <div class="the-choice">
+                            <div class="choice">
+                                <input type="radio" name="docChangeControl" id="docChangeControl1" class="radioHidden" value="old" checked>
+                                <label for="docChangeControl1" class="img-choice-select">
+                                    <div class="doc-holder">
+                                        <img src="<%= suggestions[0].profile_img %>" alt="Course Doc" id="OldDocToAddSgst">
+                                        <input type="hidden" id="oldCorMatSgstCdId" name="oldDoc" value="<%= suggestions[0].cloudinary_id %>">
+                                        <input type="hidden" id="OldDocToAddSgstInp" name="oldDocProfile" value="<%= suggestions[0].material_doc %>">
+                                    </div>
+                                </label>
+                                <h4>Keep The Suggested Document</h4>
+                            </div>
+                            <div class="choice">
+                                <input type="radio" name="docChangeControl" id="docChangeControl2" class="radioHidden" value="new">
+                                <label for="docChangeControl2" class="img-choice-select">
+                                    <div>
+                                        <input type="file" name="Doc" class="form-control" id="newCorDocSgst">
+                                    </div>
+                                </label>
+                                <h4>Add New Documnet</h4>
+                            </div>
                         </div>
                     </div>
                     <div class="step-form-two">
@@ -234,14 +238,12 @@
                             <input type="text" name="cost" class="form-control" id="newCorCostSgst" value="<%= suggestions[0].cost %>">
                         </div>
                         <div class="mb-3">
-                            <label for="newCorTimeSgst" class="form-label">Course Time Duration <span>(Optional - Duration in hours)</span></label>
+                            <label for="newCorTimeSgst" class="form-label">Course Credit Hours <span>(Optional - Duration in hours)</span></label>
                             <input type="text" name="timeDuration" class="form-control" id="newCorTimeSgst" placeholder="Enter Duration of Course in hours" value="<%= suggestions[0].timeDuration %>">
                         </div>
-                    </div>
-                    <div class="step-form-two">
-                        <div class="form-floating mb-3">
-                            <textarea type="text" name="contact" class="form-control" id="newCorContactSgst"><%= suggestions[0].contact %></textarea>
-                            <label for="newCorContactSgst">Course Contacts Information<span>(Optional)</span></label>
+                        <div class="mb-3">
+                            <label for="upCorPre" class="form-label">Course Prerequisite </label>
+                            <input type="text" name="timeDuration" class="form-control" id="upCorPre" placeholder="Enter The Prerequisite Courses Names" value="<%= courses[0].coursePrerequisite %>">
                         </div>
                     </div>
                     <div class="step-buttons">

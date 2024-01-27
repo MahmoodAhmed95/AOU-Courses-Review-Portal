@@ -23,33 +23,11 @@ async function index(req, res) {
 
 async function create(req, res) {
   try {
-    // Validate contact number
-    const contactRegex = /^(3)\d{7}$|(17|80|66|69)\d{6}$/;
-    const contact = req.body.contact;
-
-    //Validate Google Embeded link
-    const googleMapRegex =
-      /<iframe\s*src="https:\/\/www\.google\.com\/maps\/embed\?[^"]+"*\s*[^>]+>*<\/iframe>/;
-    const googleMap = req.body.location;
-
-    //Validate Event name
-    const eventNameRegex = /^(?=(.*[a-zA-Z]){3})[a-zA-Z0-9\s]+$/;
-    const eventName = req.body.name;
-
     //Validate Cost
-    const eventCostRegex = /^\d{1,7}(\.\d{1,2})?$/;
-    const eventCost = req.body.cost;
+    const courseCostRegex = /^\d{1,7}(\.\d{1,2})?$/;
+    const courseCost = req.body.cost;
 
-    if (!contactRegex.test(contact) && contact == !null) {
-      req.flash("Error", `Invalid Contact Number!`);
-      res.redirect("/suggestions/");
-    } else if (!googleMapRegex.test(googleMap)) {
-      req.flash("Error", `Invalid Google Maps Link`);
-      res.redirect("/suggestions/");
-    } else if (!eventNameRegex.test(eventName)) {
-      req.flash("Error", `Invalid Event Name`);
-      res.redirect("/suggestions/");
-    } else if (!eventCostRegex.test(eventCost) && eventCost == !null) {
+    if (!courseCostRegex.test(courseCost) && courseCost == !null) {
       req.flash("Error", `Invalid Cost`);
       res.redirect("/suggestions/");
     } else {

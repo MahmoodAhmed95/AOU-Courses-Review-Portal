@@ -11,12 +11,14 @@ const suggestionSchema = new Schema(
       type: String,
       required: true,
     },
-    location: {
+    coursePrerequisite: {
+      // new
       type: String,
-      required: true,
     },
-    contact: {
-      type: String,
+    branchId: {
+      type: Schema.Types.ObjectId,
+      ref: "branch",
+      required: true,
     },
     majorId: {
       type: Schema.Types.ObjectId,
@@ -26,14 +28,6 @@ const suggestionSchema = new Schema(
     cost: {
       type: String,
       default: "Not specified",
-    },
-    startDate: {
-      type: Date,
-      default: Date.now(),
-    },
-    endDate: {
-      type: Date,
-      default: Date.now(),
     },
     timeDuration: {
       type: String,
@@ -55,6 +49,8 @@ const suggestionSchema = new Schema(
     },
     profile_img: String,
     cloudinary_id: String,
+    material_doc: String, // new
+    cloudinary_id: String, // new
   },
   {
     timestamps: true,

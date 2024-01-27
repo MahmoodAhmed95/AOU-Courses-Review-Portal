@@ -35,19 +35,11 @@ const courseSchema = new Schema(
       type: String,
       required: true,
     },
-    // ,
-    // location: {
-    //   type: String,
-    //   required: true,
-    // }
+
     coursePrerequisite: {
       // new
       type: String,
     },
-    // ,
-    // contact: {
-    //   type: String,
-    // }
     majorId: {
       type: Schema.Types.ObjectId,
       ref: "major",
@@ -62,15 +54,6 @@ const courseSchema = new Schema(
       type: String,
       default: "Not specified",
     },
-    // ,
-    // startDate: {
-    //   type: Date,
-    //   default: Date,
-    // },
-    // endDate: {
-    //   type: Date,
-    //   default: Date,
-    // }
     timeDuration: {
       type: String,
       default: "Not specified",

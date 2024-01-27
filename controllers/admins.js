@@ -150,11 +150,6 @@ async function createCourse(req, res) {
     // const contact = req.body.contact;
     const coursePrerequisite = req.body.coursePrerequisite;
 
-    //Validate Google Embeded link
-    // const googleMapRegex =
-    //   /<iframe\s*src="https:\/\/www\.google\.com\/maps\/embed\?[^"]+"*\s*[^>]+>*<\/iframe>/;
-    // const googleMap = req.body.location;
-
     //Validate Course name
     const courseNameRegex = /^(?=(.*[a-zA-Z]){3})[a-zA-Z0-9\s]+$/;
     const courseName = req.body.name;
@@ -163,15 +158,6 @@ async function createCourse(req, res) {
     const courseCostRegex = /^\d{1,7}(\.\d{1,2})?$/;
     const courseCost = req.body.cost;
 
-    // if (!contactRegex.test(contact) && contact == !null) {
-    //   console.log("Invalid number");
-    //   req.flash("Error", `Invalid Contact Number!`);
-    //   res.redirect("/admins/courses");
-    // } else if (!googleMapRegex.test(googleMap)) {
-    //   console.log("Invalid Google Maps link");
-    //   req.flash("Error", `Invalid Google Maps Link`);
-    //   res.redirect("/admins/courses");
-    // } else
     if (!courseNameRegex.test(courseName)) {
       console.log("Invalid Course Name");
       req.flash("Error", `Invalid Course Name`);
@@ -244,13 +230,6 @@ async function editCourseForm(req, res) {
 
 async function updateCourseForm(req, res) {
   try {
-    // const contactRegex = /^(3)\d{7}$|(17|80|66|69)\d{6}$/;
-    // const contact = req.body.contact;
-
-    //Validate Google Embeded link
-    // const googleMapRegex =
-    // /<iframe\s*src="https:\/\/www\.google\.com\/maps\/embed\?[^"]+"*\s*[^>]+>*<\/iframe>/;
-    // const googleMap = req.body.location;
     const coursePrerequisite = req.body.coursePrerequisite;
 
     //Validate Course name
@@ -261,15 +240,6 @@ async function updateCourseForm(req, res) {
     const courseCostRegex = /^\d{1,7}(\.\d{1,2})?$/;
     const courseCost = req.body.cost;
 
-    // if (!contactRegex.test(contact) && contact == !null) {
-    //   console.log("Invalid number");
-    //   req.flash("Error", `Invalid Contact Number!`);
-    //   res.redirect("/admins/courses");
-    // } else if (!googleMapRegex.test(googleMap)) {
-    //   console.log("Invalid Google Maps link");
-    //   req.flash("Error", `Invalid Google Maps Link`);
-    //   res.redirect("/admins/courses");
-    // } else
     if (!courseNameRegex.test(courseName)) {
       console.log("Invalid Course Name");
       req.flash("Error", `Invalid Course Name`);
@@ -293,7 +263,7 @@ async function updateCourseForm(req, res) {
         req.body.material_doc = req.body.oldCourseDoc;
         req.body.cloudinary_id = req.body.oldDoc;
       } else {
-        // Upload image to cloudinary
+        // Upload Doc to cloudinary
         const resultD = await cloudinary.uploader.upload(req.file.path);
         req.body.material_doc = resultD.secure_url;
         req.body.cloudinary_id = resultD.public_id;
@@ -303,7 +273,7 @@ async function updateCourseForm(req, res) {
       (course.description = req.body.description),
         (course.coursePrerequisite = req.body.coursePrerequisite),
         (course.picture = req.body.picture),
-        (course.document = req.body.document),
+        (course.material_doc = req.body.material_doc),
         // (course.contact = req.body.contact),
         (course.cost = req.body.cost),
         (course.majorId = req.body.majorId),
